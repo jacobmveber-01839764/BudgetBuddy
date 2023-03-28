@@ -1,17 +1,28 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import ReactDOM from 'react-dom';
 import reportWebVitals from './utils/reportWebVitals';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { theme } from './assets/theme.js'
+import './styles.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import Main from './Main.js'
+
+function App() {
+  return (
+    <React.StrictMode>
+      <div className="App">
+        <ThemeProvider theme={theme}>
+          <Main/>
+        </ThemeProvider>
+      </div>
+    </React.StrictMode>
+  );
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
