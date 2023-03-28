@@ -26,11 +26,12 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 	var userCollection = db.Client.Database("budgetbuddy").Collection("users")
 
 	// var v contains POST credentials
-	var v Credentials
+	var v UserSchema
 	r.ParseForm()
 	v.Email = r.FormValue("email")
 	v.Password = r.FormValue("password")
-	if v.Email == "" || v.Password == "" {
+	v.Name = r.FormValue("name")
+	if v.Email == "" || v.Password == "" || v.Name == "" {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
@@ -79,6 +80,7 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 	// return the account information to the user
 	ret, err := json.Marshal(LoginResponse{
 		Email:   v.Email,
+		Name:    v.Name,
 		Session: v.Session,
 	})
 	if err != nil {

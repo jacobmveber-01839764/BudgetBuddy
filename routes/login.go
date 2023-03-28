@@ -16,13 +16,15 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type Credentials struct {
+type UserSchema struct {
+	Name     string `json:"name" bson:"name"`
 	Email    string `json:"email" bson:"email"`
 	Password string `json:"password" bson:"password"`
 	Session  string `json:"session" bson:"session"`
 }
 
 type LoginResponse struct {
+	Name    string `json:"name"`
 	Email   string `json:"email"`
 	Session string `json:"session"`
 }
@@ -36,7 +38,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	var userCollection = db.Client.Database("budgetbuddy").Collection("users")
 
 	// var v contains POST credentials
-	var v Credentials
+	var v UserSchema
 	r.ParseForm()
 	v.Email = r.FormValue("email")
 	v.Password = r.FormValue("password")
@@ -46,7 +48,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// cmp struct will be compared with v to verify credentials
-	var cmp Credentials
+	var cmp UserSchema
 
 	found := userCollection.FindOne(r.Context(), bson.D{primitive.E{Key: "email", Value: strings.ToLower(v.Email)}})
 	if found.Err() != nil {
