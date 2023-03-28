@@ -1,22 +1,8 @@
-import { createTheme, ThemeProvider } from '@material-ui/core';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { theme } from './styles/theme.js'
 import NavBar from './components/NavBar'
+
 import './App.css';
-
-const theme = createTheme({
-  pallete: {
-    primary: {
-      
-    },
-    secondary: {
-
-    },
-  },
-  typography: {
-    fontFamily: [
-      'Roboto'
-    ],
-  }
-});
 
 function App() {
   return (
