@@ -1,14 +1,9 @@
-import { Toolbar, Typography } from "@material-ui/core";
 import React from "react";
-import "./NavBar.css"
+import { Menu, MenuItem } from '@mui/material';
+import { Toolbar, Typography, Button, IconButton, Link } from "@material-ui/core";
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import IconButton from "@material-ui/core/IconButton";
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import Button from "@material-ui/core/Button";
-
 import logo from "../assets/BudgetBuddyLogo.png"
-
+import "./NavBar.css"
 
 export default function NavBar() {
     const [auth, setAuth] = React.useState(true);
@@ -34,12 +29,14 @@ export default function NavBar() {
 
     return (
         <Toolbar position="sticky" className="bar">
-            <img src={logo} className="logo"/>
-            <Typography 
-                className="nav-header"
-                variant="h5" >
-                BudgetBuddy
-            </Typography>
+            <Link href="/" class="nav-brand">
+                <img src={logo} className="logo"/>
+                <Typography 
+                    className="nav-header"
+                    variant="h5" >
+                    BudgetBuddy
+                </Typography>
+            </Link>
             <div className="nav-login-control">
                 {auth
                     ? // Logged In

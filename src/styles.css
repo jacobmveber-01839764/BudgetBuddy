@@ -5,9 +5,27 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.main-body {
+  display: flex;
+  width: 100vw;
+}
+
+.page-display {
+  margin: 0 40px;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 20px 30px;
+  width: 100vw;
+}
+
+.page-display > * {
+  margin: 0;
 }
