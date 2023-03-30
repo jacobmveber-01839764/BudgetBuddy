@@ -1,23 +1,20 @@
-.current_balance_widget {
+.income_widget {
     background-color: rgb(223, 245, 229);
 }
 .widget_header {
 }
 
 img {
-    float: left;
     height: 40px;
-    margin-left: 5%;
 }
 
-.current_balance_widget h1 {
+.income_widget h1 {
     float: left;
     margin: 0;
     margin-left: 10%;
 }
-.current_balance_widget h6 {
+.income_widget h6 {
     color: green;
-    float: left;
     margin: 0;
-    margin-left: 33%;
+    float: right;
 }

@@ -1,13 +1,10 @@
 .add_bill_widget {
-    max-width: 20%;
     background-color: rgb(223, 245, 229);
-    padding: 10px;
-    margin: 1%;
-}
+    max-height: 50%;
+  }
 .widget_header {
     margin: 0px;
     margin-bottom: 20px;
-    position: relative;
 }
 input {
     max-width: 50%;
@@ -17,7 +14,6 @@ button {
     margin-right: auto;
 }
 .buttons{
-    margin-top: 10px;
 }
 /* Style The Dropdown Button */
 .dropbtn {

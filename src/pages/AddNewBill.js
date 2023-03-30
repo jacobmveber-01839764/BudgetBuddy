@@ -5,7 +5,7 @@ export default function AddNewBill() {
     return (
         <>
             <div class="add_bill_widget">
-                <h5 class="widget_header">Add New Bill</h5>
+                <h4 class="widget_header">Add New Bill</h4>
                 <input type="number"></input> 
                 <div class="buttons">
                     <div class="dropdown">

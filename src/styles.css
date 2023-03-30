@@ -24,6 +24,16 @@ code {
   border-radius: 20px;
   padding: 20px 30px;
   width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 125px 250px 100px 100px;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.page-display div {
+  padding: 10px;
 }
 
 .page-display > * {

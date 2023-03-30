@@ -1,0 +1,15 @@
+.transactions_widget {
+    background-color: rgb(223, 245, 229);
+}
+
+.transaction_table {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 30px 30px 30px 30px;
+    box-sizing: border-box;
+}
+
+.transaction_table p {
+    margin: 0;
+    float: left;
+}
