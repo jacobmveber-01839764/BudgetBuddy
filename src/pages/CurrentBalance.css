@@ -1,0 +1,29 @@
+.current_balance_widget {
+    max-width: 20%;
+    background-color: rgb(223, 245, 229);
+    padding: 10px;
+    margin: 1%;
+}
+.widget_header {
+    margin: 0px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+img {
+    position: relative;
+    float: left;
+    height: 40px;
+    padding: 5%;
+}
+
+.current_balance_widget h1 {
+    padding-left: 70px;
+    margin: 0;
+}
+.current_balance_widget h6 {
+    color: green;
+    margin: 0;
+    margin-bottom: 10px;
+    padding-left: 70px;
+}

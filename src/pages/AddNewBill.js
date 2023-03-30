@@ -17,7 +17,7 @@ export default function AddNewBill() {
                             <p>Leisure</p>
                             <p>Gas</p>
                         </div>
-                    
+
                 </div>
                 <button>Add Bill</button>  
                 </div>

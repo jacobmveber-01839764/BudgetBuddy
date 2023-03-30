@@ -2,9 +2,10 @@
     max-width: 20%;
     background-color: rgb(223, 245, 229);
     padding: 10px;
+    margin: 1%;
 }
 .widget_header {
-    margin:0px;
+    margin: 0px;
     margin-bottom: 20px;
     position: relative;
 }
