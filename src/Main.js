@@ -12,6 +12,7 @@ import Error from './pages/Error-Page'
 import './styles.css'
 
 
+
 export default function Main() {
     let Layout
     switch (window.location.pathname) {
