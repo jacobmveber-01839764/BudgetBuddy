@@ -1,6 +1,6 @@
 import React from 'react'
 import './Income.css'
-import logo from './widget_logos/income_logo.png';
+import logo from '../assets/widget_logos/income_logo.png';
 
 export default function Income() {
     return (

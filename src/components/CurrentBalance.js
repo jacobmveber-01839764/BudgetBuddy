@@ -1,6 +1,6 @@
 import React from 'react'
 import './CurrentBalance.css'
-import logo from './widget_logos/current_balance_logo.png';
+import logo from '../assets/widget_logos/current_balance_logo.png';
 
 export default function CurrentBalance() {
     return (

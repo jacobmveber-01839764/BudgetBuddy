@@ -1,3 +1,7 @@
+.sidebar {
+    padding: 0 12px;
+}
+
 .sidebar-header {
     display: flex;
     align-items: center;

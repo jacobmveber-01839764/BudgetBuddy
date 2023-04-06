@@ -1,9 +1,9 @@
- import AddNewBill from './AddNewBill'
- import CurrentBalance from './CurrentBalance'
- import Expenses from './Expenses'
- import Income from './Income'
- import Budget from './budget'
-import RecentTransactions from './RecentTransactions'
+ import AddNewBill from '../components/AddNewBill'
+ import CurrentBalance from '../components/CurrentBalance'
+ import Expenses from '../components/Expenses'
+ import Income from '../components/Income'
+ import Budget from '../components/budget'
+import RecentTransactions from '../components/RecentTransactions'
  
  export default function Dashboard() {
     return (

@@ -8,6 +8,7 @@ import Privacy from './pages/Privacy'
 import Settings from './pages/Settings'
 import Support from './pages/Support'
 import ContactUs from './pages/Contact-Us'
+import Welcome from './pages/Welcome'
 import Error from './pages/Error-Page'
 import './styles.css'
 
@@ -27,12 +28,19 @@ export default function Main() {
         case "/settings":
             Layout = Settings
             break;
+        /*
         case "/support":
             Layout = Support
             break;
+        */
         case "/contact-us":
             Layout = ContactUs
             break;
+
+        case "/welcome":
+            Layout = Welcome
+            break;
+            
         default:
             Layout = Error
             break;
@@ -41,14 +49,16 @@ export default function Main() {
     return (
         <div>
             <NavBar />
-            <ProSidebarProvider>
-                <div class="main-body">
-                    <SideNav />
-                    <div class="page-display">
-                        <Layout />
+            {window.location.pathname != "/welcome" ?
+                <ProSidebarProvider>
+                    <div class="main-body">
+                        <SideNav />
+                        <div class="page-display">
+                            <Layout />
+                        </div>
                     </div>
-                </div>
-            </ProSidebarProvider>
+                </ProSidebarProvider>
+            : <Layout />}
         </div>
     )
 }

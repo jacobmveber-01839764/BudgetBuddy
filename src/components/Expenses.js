@@ -1,6 +1,6 @@
 import React from 'react'
 import './Expenses.css'
-import logo from './widget_logos/expenses_logo.png';
+import logo from '../assets/widget_logos/expenses_logo.png';
 
 export default function Expenses() {
     return (
