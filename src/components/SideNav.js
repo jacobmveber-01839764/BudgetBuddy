@@ -12,7 +12,7 @@ import './SideNav.css'
 
 export default function SideNav() {
     return(
-        <Sidebar className='sidebar' backgroundColor='transparent'>
+        <Sidebar backgroundColor='transparent'>
             <div className='sidebar-header'>
                 <div className='sidebar-avatar'>
                     <Avatar />
