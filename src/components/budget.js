@@ -1,17 +1,33 @@
-import React from 'react'
-import './budget.css'
-import logo from '../assets/widget_logos/budget_logo.png';
+import React, { useState, useContext } from 'react';
+import ViewBudget from './ViewBudget';
+import EditBudget from './EditBudget';
+import { AppContext } from '../context/AppContext';
 
-export default function Budget() {
-    return (
-        <>
-            <div class="budget_widget">
-                <h4 class="widget_header">Budget Remaining</h4> 
-                <img src={logo} />          
-                <h1>$456.78</h1>
-                <h6>Still on budget</h6>
-            </div>
-        </>
-        
-    )
-}
+const Budget = () => {
+	const { budget, dispatch } = useContext(AppContext);
+	const [isEditing, setIsEditing] = useState(false);
+
+	const handleEditClick = () => {
+		setIsEditing(true);
+	};
+
+	const handleSaveClick = (value) => {
+		dispatch({
+			type: 'SET_BUDGET',
+			payload: value,
+		});
+		setIsEditing(false);
+	};
+
+	return (
+		<div class='alert alert-secondary p-3 d-flex align-items-center justify-content-between'>
+			{isEditing ? (
+				<EditBudget handleSaveClick={handleSaveClick} budget={budget} />
+			) : (
+				<ViewBudget handleEditClick={handleEditClick} budget={budget} />
+			)}
+		</div>
+	);
+};
+
+export default Budget;
