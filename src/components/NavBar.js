@@ -4,6 +4,7 @@ import { Toolbar, Typography, Button, IconButton, Link } from "@material-ui/core
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import logo from "../assets/BudgetBuddyLogo.png"
 import "./NavBar.css"
+import checkLogin from "../utils/utils";
 
 export default function NavBar() {
     const [auth, setAuth] = React.useState(true);
@@ -12,11 +13,19 @@ export default function NavBar() {
     const handleLogin = () => {
         setAuth(true);
         handleClose();
+        window.location.href='/login';
+    }
+
+    const handleSignup = () => {
+        setAuth(true);
+        handleClose();
+        window.location.href='/signup'
     }
     
     const handleLogout= () => {
         setAuth(false);
         handleClose();
+        window.location.href='/welcome'
     }
 
     const handleMenu = (event) => {
@@ -38,7 +47,7 @@ export default function NavBar() {
                 </Typography>
             </Link>
             <div className="nav-login-control">
-                {auth
+                {!checkLogin
                     ? // Logged In
                         <div>
                             <IconButton
@@ -69,7 +78,12 @@ export default function NavBar() {
                                 <MenuItem onClick={handleLogout}>Log Out</MenuItem>
                             </Menu>
                         </div>
-                    : <Button onClick={handleLogin}>Login or Sign Up</Button>  // Logged Out
+                    : // Logged Out
+                    <span style={{display: "flex"}}> 
+                        <Button onClick={handleLogin}>Login</Button>
+                        <p style={{marginTop: "9px"}}>or</p>
+                        <Button onClick={handleSignup}>Signup</Button>
+                    </span>
                 }
             </div>
         </Toolbar>

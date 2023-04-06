@@ -15,6 +15,10 @@
     color: inherit;
 }
 
+.nav-brand:hover {
+    color: inherit;
+}
+
 .nav-login-control {
     display: flex;
     margin-left: auto;

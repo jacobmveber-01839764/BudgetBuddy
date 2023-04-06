@@ -48,8 +48,7 @@ export const AppProvider = (props) => {
 				expenses: state.expenses,
 				budget: state.budget,
 				dispatch,
-			}}
-		>
+			}}>
 			{props.children}
 		</AppContext.Provider>
 	);

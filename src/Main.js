@@ -6,10 +6,14 @@ import Dashboard from './pages/Dashboard'
 import AboutUs from './pages/About-Us'
 import Privacy from './pages/Privacy'
 import Settings from './pages/Settings'
-import Support from './pages/Support'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 import ContactUs from './pages/Contact-Us'
 import Welcome from './pages/Welcome'
 import Error from './pages/Error-Page'
+
+import checkLogin from './utils/utils.js'
+
 import './styles.css'
 
 export default function Main() {
@@ -40,7 +44,15 @@ export default function Main() {
         case "/welcome":
             Layout = Welcome
             break;
-            
+        
+        case "/login":
+            Layout = Login
+            break;
+        
+        case "/signup":
+            Layout = Signup
+            break;
+
         default:
             Layout = Error
             break;
@@ -49,7 +61,7 @@ export default function Main() {
     return (
         <div>
             <NavBar />
-            {window.location.pathname != "/welcome" ?
+            {checkLogin() ?
                 <ProSidebarProvider>
                     <div class="main-body">
                         <SideNav />

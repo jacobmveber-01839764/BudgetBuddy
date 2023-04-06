@@ -33,11 +33,13 @@ export default function SideNav() {
                     icon={<SettingsOutlinedIcon/>}>
                     Settings
                 </MenuItem>
+                {/*
                 <MenuItem 
                     component={<Link href="/support" />}
                     icon={<ContactSupportOutlinedIcon/>}>
                     Support
                 </MenuItem>
+                */}
                 <MenuItem 
                     component={<Link href="/privacy" />}
                     icon={<PrivacyTipOutlinedIcon/>}>
