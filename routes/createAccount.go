@@ -18,6 +18,7 @@ import (
 )
 
 func CreateAccount(w http.ResponseWriter, r *http.Request) {
+	log.Println("* /auth/createaccount")
 	// prepare DB
 	err := db.Client.Ping(context.Background(), readpref.Primary())
 	if err != nil {
@@ -26,7 +27,7 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 	var userCollection = db.Client.Database("budgetbuddy").Collection("users")
 
 	// var v contains POST credentials
-	var v UserSchema
+	var v db.UserSchema
 	r.ParseForm()
 	v.Email = r.FormValue("email")
 	v.Password = r.FormValue("password")
@@ -72,6 +73,8 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 	// add the new user to the database
 	v.Session = sessionID
 	v.Password = string(hashedPass)
+	v.Balance.Currency = "USD"
+	v.Budget.Currency = "USD"
 	_, err = userCollection.InsertOne(r.Context(), v)
 	if err != nil {
 		log.Println("* Error inserting new user")
