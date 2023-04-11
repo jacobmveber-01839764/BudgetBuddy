@@ -15,6 +15,7 @@ import (
 )
 
 type BudgetResponse struct {
+	Status int `json:"status"`
 	// total amount allowed to spend in a month
 	Budget money.Money `json:"budget"`
 	// total amount allowed to spend by category
@@ -58,6 +59,8 @@ func GetBudget(w http.ResponseWriter, r *http.Request) {
 		}
 		response.Expenses[e.Category] = append(response.Expenses[e.Category], e)
 	}
+
+	response.Status = 200
 
 	ret, err := json.Marshal(response)
 	if err != nil {

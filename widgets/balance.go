@@ -17,9 +17,8 @@ import (
 // TODO: Put user info fetching code into middleware
 
 type GetBalanceResponse struct {
-	Status    int         `json:"status"`
-	RequestID string      `json:"request_id"`
-	Data      money.Money `json:"data"`
+	Status  int         `json:"status"`
+	Balance money.Money `json:"balance"`
 }
 
 func GetBalance(w http.ResponseWriter, r *http.Request) {
@@ -39,9 +38,8 @@ func GetBalance(w http.ResponseWriter, r *http.Request) {
 	}
 
 	response := GetBalanceResponse{
-		Status:    200,
-		RequestID: "0",
-		Data: money.Money{
+		Status: 200,
+		Balance: money.Money{
 			Currency: user.Balance.Currency,
 			Whole:    user.Balance.Whole,
 			Decimal:  user.Balance.Decimal,
@@ -96,9 +94,8 @@ func SetBalance(w http.ResponseWriter, r *http.Request) {
 	}
 
 	response := GetBalanceResponse{
-		Status:    200,
-		RequestID: "0",
-		Data: money.Money{
+		Status: 200,
+		Balance: money.Money{
 			Currency: newBalance.Currency,
 			Whole:    newBalance.Whole,
 			Decimal:  newBalance.Decimal,
