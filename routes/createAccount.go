@@ -82,6 +82,7 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 
 	// return the account information to the user
 	ret, err := json.Marshal(LoginResponse{
+		Status:  200,
 		Email:   v.Email,
 		Name:    v.Name,
 		Session: v.Session,

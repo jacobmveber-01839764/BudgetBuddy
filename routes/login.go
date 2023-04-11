@@ -18,6 +18,7 @@ import (
 )
 
 type LoginResponse struct {
+	Status  int    `json:"status"`
 	Name    string `json:"name"`
 	Email   string `json:"email"`
 	Session string `json:"session"`
@@ -90,6 +91,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	update := bson.D{primitive.E{Key: "$set", Value: bson.D{primitive.E{Key: "session", Value: sessionID}}}}
 	userCollection.UpdateOne(context.TODO(), filter, update, opts)
 
+	account.Status = 200
 	acc, err := json.Marshal(account)
 	if err != nil {
 		fmt.Println("Error marshalling bson.D response")

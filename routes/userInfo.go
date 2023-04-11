@@ -12,8 +12,9 @@ import (
 )
 
 type UserInfoResponse struct {
-	Name  string `json:"name" bson:"name"`
-	Email string `json:"email" bson:"email"`
+	Status int    `json:"status"`
+	Name   string `json:"name" bson:"name"`
+	Email  string `json:"email" bson:"email"`
 }
 
 func UserInfo(w http.ResponseWriter, r *http.Request) {
@@ -40,8 +41,9 @@ func UserInfo(w http.ResponseWriter, r *http.Request) {
 	}
 
 	info := UserInfoResponse{
-		Name:  user.Name,
-		Email: user.Email,
+		Status: 200,
+		Name:   user.Name,
+		Email:  user.Email,
 	}
 
 	ret, err := json.Marshal(info)
