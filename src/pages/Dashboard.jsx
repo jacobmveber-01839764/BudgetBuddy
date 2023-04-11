@@ -7,6 +7,7 @@ import ExpenseTotal from '../components/ExpenseTotal';
 import ExpenseList from '../components/ExpenseList';
 import AddExpenseForm from '../components/AddExpenseForm';
 import RemainingBudget from '../components/Remaining';
+import AddIncome from '../components/AddIncome'
 
 export default function Dashboard() {
   return (
@@ -24,16 +25,21 @@ export default function Dashboard() {
 						<ExpenseTotal />
 					</div>
 				</div>
-				<h3 className='mt-3'>Expenses</h3>
-				<div className='row '>
-					<div className='col-sm'>
-						<ExpenseList />
+				
+				<div className='row mt-3'>
+					<div className='col-sm alert alert-secondary'>
+						<h3 className='mt-3'>Expenses</h3><ExpenseList />
 					</div>
 				</div>
-				<h3 className='mt-3'>Add Expense</h3>
 				<div className='row mt-3'>
 					<div className='col-sm'>
 						<AddExpenseForm />
+					</div>
+				</div>
+				
+				<div className='row mt-3'>
+					<div className='col-sm'>
+						{/*<h3 className='mt-3'>Add Income</h3><AddIncome /> */}
 					</div>
 				</div>
 			</div>
