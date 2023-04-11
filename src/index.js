@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot }  from 'react-dom/client';
 import reportWebVitals from './utils/reportWebVitals';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { theme } from './assets/theme.js'
@@ -24,5 +24,5 @@ function App() {
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+const root = createRoot(document.getElementById("root"));
+root.render(<App />);

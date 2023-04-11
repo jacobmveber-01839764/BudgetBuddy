@@ -19,7 +19,7 @@ export default function Welcome() {
                     }}
                         >Start Building Your Wealth</h1>
                     <p className="mb-4">BudgetBuddy’s top notch budgeting tools will help you start building wealth, no matter your income or debt.</p>
-                    <Button className='mx-0 mb-4' variant="outline-success">Get Started</Button>
+                    <Button className='mx-0 mb-4' variant="outline-success" href="/signup">Get Started</Button>
                 </Col>
                 <Col className='d-flex' md={4}>
                     <Image className='align-self-end' src={budgethero} fluid />
@@ -50,7 +50,7 @@ export default function Welcome() {
                     </div>
                 </Col>
             </Row>
-            <Button className="mx-auto" variant="outline-success">Create an account for free</Button>
+            <Button className="mx-auto" variant="outline-success" href="/signup">Create an account for free</Button>
         </Container>
     </div>
   );

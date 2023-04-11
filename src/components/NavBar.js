@@ -7,25 +7,22 @@ import "./NavBar.css"
 import checkLogin from "../utils/utils";
 
 export default function NavBar() {
-    const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleLogin = () => {
-        setAuth(true);
         handleClose();
         window.location.href='/login';
     }
 
     const handleSignup = () => {
-        setAuth(true);
         handleClose();
-        window.location.href='/signup'
+        window.location.href='/signup';
     }
     
     const handleLogout= () => {
-        setAuth(false);
         handleClose();
-        window.location.href='/welcome'
+        document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+        window.location.href='/welcome';
     }
 
     const handleMenu = (event) => {
@@ -47,7 +44,7 @@ export default function NavBar() {
                 </Typography>
             </Link>
             <div className="nav-login-control">
-                {!checkLogin
+                {checkLogin()
                     ? // Logged In
                         <div>
                             <IconButton

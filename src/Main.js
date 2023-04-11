@@ -20,17 +20,23 @@ export default function Main() {
     let Layout
     switch (window.location.pathname) {
         case "/":
+            if (checkLogin()) {
+                Layout = Dashboard;
+            } else {
+                Layout = Welcome;
+            }
+            break;
         case "/dashboard":
-            Layout = Dashboard
+            Layout = Dashboard;
             break;
         case "/about-us":
-            Layout = AboutUs
+            Layout = AboutUs;
             break;
         case "/privacy":
-            Layout = Privacy
+            Layout = Privacy;
             break;
         case "/settings":
-            Layout = Settings
+            Layout = Settings;
             break;
         /*
         case "/support":
@@ -38,23 +44,23 @@ export default function Main() {
             break;
         */
         case "/contact-us":
-            Layout = ContactUs
+            Layout = ContactUs;
             break;
 
         case "/welcome":
-            Layout = Welcome
+            Layout = Welcome;
             break;
         
         case "/login":
-            Layout = Login
+            Layout = Login;
             break;
         
         case "/signup":
-            Layout = Signup
+            Layout = Signup;
             break;
 
         default:
-            Layout = Error
+            Layout = Error;
             break;
     }
 
