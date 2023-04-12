@@ -34,12 +34,17 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 	v.Name = r.FormValue("name")
 	if v.Email == "" || v.Password == "" || v.Name == "" {
 		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprint(w, "{\"error\":\"field(s) are missing\"}")
 		return
 	}
 
-	if len(v.Password) < 8 || len(v.Password) > 255 || !EmailIsValid(v.Email) {
+	if len(v.Password) < 8 || len(v.Password) > 255 {
 		w.WriteHeader(http.StatusBadRequest)
-		fmt.Fprint(w, "{\"error\":\"there was a problem with your request. Please try again with different values\"}")
+		fmt.Fprint(w, "{\"error\":\"password must be 8 characters or greater\"}")
+		return
+	} else if !EmailIsValid(v.Email) {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprint(w, "{\"error\":\"email is invalid\"}")
 		return
 	}
 

@@ -41,7 +41,7 @@ func GetMonthExpenses(w http.ResponseWriter, r *http.Request) {
 		if user.Expenses[i].Timestamp < time.Now().Add(-30*24*time.Hour).Unix() {
 			break
 		}
-		total = money.Add(total, user.Expenses[i].Amount)
+		total = money.Add(user.Expenses[i].Amount, total)
 	}
 
 	ret, err := json.Marshal(total)

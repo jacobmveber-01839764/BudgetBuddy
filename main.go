@@ -41,6 +41,9 @@ func main() {
 	r.Post("/auth/login", routes.Login)
 	r.Post("/auth/login/session", routes.Login)
 	r.Post("/auth/createaccount", routes.CreateAccount)
+	r.Post("/auth/changepassword", routes.ChangePassword)
+	r.Post("/auth/changename", routes.ChangeName)
+	r.Post("/auth/deleteaccount", routes.DeleteAccount)
 	r.Get("/userinfo", routes.UserInfo)
 
 	r.Mount("/w", widgets.Router())

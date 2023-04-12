@@ -153,7 +153,7 @@ func NewTransaction(w http.ResponseWriter, r *http.Request) {
 	update := bson.D{primitive.E{Key: "$set", Value: bson.D{primitive.E{Key: r.FormValue("type"), Value: newArr}}}}
 	userCollection.UpdateOne(context.TODO(), filter, update, opts)
 
-	w.Write([]byte("{\"status\": 200}"))
+	w.Write([]byte("{\"status\":200}"))
 }
 
 func NewRecurring(w http.ResponseWriter, r *http.Request) {
@@ -243,6 +243,6 @@ func NewRecurring(w http.ResponseWriter, r *http.Request) {
 	update := bson.D{primitive.E{Key: "$set", Value: bson.D{primitive.E{Key: r.FormValue("type"), Value: newArr}}}}
 	userCollection.UpdateOne(context.TODO(), filter, update, opts)
 
-	w.Write([]byte("{\"status\": 200}"))
+	w.Write([]byte("{\"status\":200}"))
 
 }

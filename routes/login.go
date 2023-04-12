@@ -40,6 +40,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	v.Password = r.FormValue("password")
 	if v.Email == "" || v.Password == "" {
 		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintf(w, "{\"error\":\"both email and password must be provided\"}")
 		return
 	}
 
@@ -75,15 +76,15 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	// set new session cookie for user, either persistent (remember me) or temporary
 	sessionID := uuid.NewString()
-	var session = &http.Cookie{
-		Name:     "session",
-		Value:    sessionID,
-		Path:     "/",
-		Secure:   true,
-		SameSite: http.SameSiteLaxMode,
-		MaxAge:   0,
-	}
-	http.SetCookie(w, session)
+	// var session = &http.Cookie{
+	// 	Name:     "session",
+	// 	Value:    sessionID,
+	// 	Path:     "/",
+	// 	Secure:   true,
+	// 	SameSite: http.SameSiteLaxMode,
+	// 	MaxAge:   0,
+	// }
+	// http.SetCookie(w, session)
 
 	// update the new user session in the DB
 	filter := bson.D{primitive.E{Key: "email", Value: strings.ToLower(account.Email)}}
@@ -92,6 +93,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	userCollection.UpdateOne(context.TODO(), filter, update, opts)
 
 	account.Status = 200
+	account.Session = sessionID
 	acc, err := json.Marshal(account)
 	if err != nil {
 		fmt.Println("Error marshalling bson.D response")

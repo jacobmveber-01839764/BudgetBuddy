@@ -22,6 +22,8 @@ type BudgetResponse struct {
 	BudgetCategories map[string]money.Money `json:"budget_categories"`
 	// categories in the budget
 	Categories []string `json:"categories"`
+	// total expenses by category
+	ExpensesByCategory map[string]money.Money `json:"expenses_by_category"`
 	// transactions mapped to a category
 	Expenses map[string][]db.Transaction `json:"expenses"`
 }
@@ -53,11 +55,13 @@ func GetBudget(w http.ResponseWriter, r *http.Request) {
 	}
 	response.Categories = cats
 	response.Expenses = make(map[string][]db.Transaction)
+	response.ExpensesByCategory = make(map[string]money.Money)
 	for _, e := range user.Expenses {
 		if response.Expenses[e.Category] == nil {
 			response.Expenses[e.Category] = make([]db.Transaction, 0)
 		}
 		response.Expenses[e.Category] = append(response.Expenses[e.Category], e)
+		response.ExpensesByCategory[e.Category] = money.Add(e.Amount, response.ExpensesByCategory[e.Category])
 	}
 
 	response.Status = 200

@@ -1,4 +1,19 @@
+# General
+## GET /userinfo
+Headers: x-session-key
+
+Response:
+```json
+{
+    "name": string,
+    "email": string,
+}
+```
+
 # Auth (/auth) router
+Prepend all request under the auth router with '/auth'
+
+e.g. `/auth/login`
 ## POST /login
 Form: email (string), password (string)
 
@@ -21,20 +36,48 @@ Response:
     "session": string,
 }
 ```
-## GET /userinfo
-Headers: x-session-key
+## POST /deleteaccount
+Form: password (string)
+
+Requires x-session-key
 
 Response:
 ```json
 {
-    "name": string,
-    "email": string,
+    "status": int,
+}
+```
+## POST /changename
+Form: name (string)
+
+Requires x-session-key
+
+Response:
+```json
+{
+    "status": int,
+}
+```
+## POST /changepassword
+Form: old (string), new (string)
+
+Requires x-session-key
+
+Response:
+```json
+{
+    "status": int,
 }
 ```
 
 # Widget (/w) router
 **IMPORTANT!** All requests for the widget router require the x-session-key header be set
 to the user's current session token.
+
+
+Prepend all request under the auth router with '/auth'
+
+e.g. `/w/balance`
 ## GET /balance
 Return the current balance of the account
 
@@ -116,22 +159,35 @@ Response:
 ```json
 {
   "status": int,
+  // total monthly budget
   "budget": {
     "currency": string,
     "whole": int,
     "decimal": int,
   },
+  // budgets for each category
   "budget_categories": {
-    "category": {
+    "example_category": {
         "currency": string,
         "whole": int,
         "decimal": int,
     },
     ...
   },
+  // an array of all defined categories
   "categories": [ string ],
+  // month expense totals by category
+  "expenses_by_category": {
+    "example_category": {
+      "currency": string,
+      "whole": int,
+      "decimal": int
+    },
+    ...
+  }
+  // list of all expenses by category
   "expenses": {
-    "category": [
+    "example_category": [
       {
         "timestamp": unix,
         "category": string,
