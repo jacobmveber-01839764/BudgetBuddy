@@ -10,7 +10,7 @@ import Main from './Main.js'
 function App() {
   return (
     <React.StrictMode>
-      <div className="App">
+      <div className="app">
         <ThemeProvider theme={theme}>
           <Main/>
         </ThemeProvider>

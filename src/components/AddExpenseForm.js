@@ -28,14 +28,14 @@ const AddExpenseForm = (props) => {
 
 	return (
 		<form onSubmit={onSubmit}>
-			<div class='row alert alert-secondary'>
-				{/* <div class='col-sm col-lg-4'>
-				<form for="name">
+			<div className='row alert alert-secondary'>
+				{/* <div className='col-sm col-lg-4'>
+				<form htmlFor="name">
 				<label >Choose a category:</label>
 					<select>
 						<option required='required'
 						type='text'
-						class='form-control'
+						className='form-control'
 						id='name'
 						value={name}
 						onChange={(event) => setName(event.target.value)}>Rent</option>
@@ -43,32 +43,32 @@ const AddExpenseForm = (props) => {
 				</form>
 				</div> */}
 				<h3>Add Expense</h3>
-				<div class='col-sm col-lg-4'>
-					<label for='name'>Name</label>
+				<div className='col-sm col-lg-4'>
+					<label htmlFor='name'>Name</label>
 					<input
 						required='required'
 						type='text'
-						class='form-control'
+						className='form-control'
 						id='name'
 						value={name}
 						onChange={(event) => setName(event.target.value)}
 					></input>
 				
 				</div>  
-				<div class='col-sm col-lg-4'>
-					<label for='cost'>Cost</label>
+				<div className='col-sm col-lg-4'>
+					<label htmlFor='cost'>Cost</label>
 					<input
 						required='required'
 						type='number'
-						class='form-control'
+						className='form-control'
 						id='cost'
 						value={cost}
 						onChange={(event) => setCost(event.target.value)}
 					/>
 				</div>
-			<div class='row mt-3'>
-				<div class='col-sm'>
-					<button type='submit' class='btn btn-primary'>
+			<div className='row mt-3'>
+				<div className='col-sm'>
+					<button type='submit' className='btn btn-primary'>
 						Save
 					</button>
 				</div>

@@ -1,5 +1,6 @@
 import './Login.css'
 import React, { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default function SignUp() {
     const [firstName, setFirstName] = useState('');
@@ -7,6 +8,7 @@ export default function SignUp() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorText, setErrorText] = useState(null);
 
 
     function handleSubmit(event) {
@@ -29,7 +31,8 @@ export default function SignUp() {
         .then((response) => response.json())
         .then((data) => {
             if (data.status != 200) {
-                console.log(data.error);
+                console.log(data.error);             
+                setErrorText(data.error);
             } else {
                 const session = data.session;
                 document.cookie = `session=${session}; path=/;`
@@ -40,6 +43,7 @@ export default function SignUp() {
         })
         .catch((error) => {
             console.error(error); // Log any errors
+            setErrorText(error);
         });
     }
 
@@ -96,6 +100,7 @@ export default function SignUp() {
                     <button type="submit" className="btn btn-primary mb-3">
                         Sign Up
                     </button>
+                    {errorText && <div className='alert alert-danger p-2 mb-1'>{errorText}</div>}
                     </div>
                     <p className="forgot-password text-right">
                     Already registered? <a href="/login">log in</a>

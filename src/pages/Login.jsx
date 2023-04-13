@@ -5,6 +5,7 @@ import './Login.css'
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorText, setErrorText] = useState(null);
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -22,6 +23,7 @@ export default function Login() {
         .then((data) => {
             if (data.status != 200) {
                 console.log(data.error);
+                setErrorText(data.error);
             } else {
                 const session = data.session;
                 document.cookie = `session=${session}; path=/;`
@@ -79,6 +81,7 @@ export default function Login() {
                         Submit
                     </button>
                     </div>
+                    {errorText && <div className='alert alert-danger p-2 mb-1'>{errorText}</div>}
                     <p className="forgot-password">
                         Don't have an account? <a href="/signup">sign up</a>
                     </p>

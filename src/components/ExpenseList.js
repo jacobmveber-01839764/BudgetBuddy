@@ -22,11 +22,11 @@ const ExpenseList = () => {
 		<>
 			{/* <input
 				type='text'
-				class='form-control mb-2 mr-sm-2'
+				className='form-control mb-2 mr-sm-2'
 				placeholder='Type to search...'
 				onChange={handleChange}
 			/>  */}
-			<ul class='list-group mt-3 mb-3'>
+			<ul className='list-group mt-3 mb-3'>
 				{filteredExpenses.map((expense) => (
 					<ExpenseItem
 						id={expense.id}

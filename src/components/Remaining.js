@@ -13,7 +13,7 @@ const RemainingBudget = () => {
 	const alertType = totalExpenses > budget ? 'alert-danger' : 'alert-success';
 
 	return (
-		<div class={`alert p-4 ${alertType}`}>
+		<div className={`alert p-4 ${alertType}`}>
 			<img src={logo}></img> 
 			<span>Budget Remaining: ${budget - totalExpenses}</span>
 		</div>

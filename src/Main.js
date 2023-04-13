@@ -12,7 +12,7 @@ import ContactUs from './pages/Contact-Us'
 import Welcome from './pages/Welcome'
 import Error from './pages/Error-Page'
 
-import checkLogin from './utils/utils.js'
+import {checkLogin} from './utils/utils.js'
 
 import './styles.css'
 
@@ -65,13 +65,13 @@ export default function Main() {
     }
 
     return (
-        <div>
+        <div className="full-page">
             <NavBar />
             {checkLogin() ?
                 <ProSidebarProvider>
-                    <div class="main-body">
+                    <div className="main-body">
                         <SideNav />
-                        <div class="page-display">
+                        <div className="page-display elevated">
                             <Layout />
                         </div>
                     </div>

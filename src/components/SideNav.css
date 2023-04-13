@@ -1,3 +1,7 @@
+.sidebar {
+    height: 100vh;
+}
+
 .sidebar-header {
     display: flex;
     align-items: center;
@@ -7,4 +11,8 @@
 
 .sidebar-avatar {
     justify-content: center;
+}
+
+.sidebar-welcome {
+    font-weight: bold;
 }

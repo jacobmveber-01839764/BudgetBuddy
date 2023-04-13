@@ -5,20 +5,21 @@ import ContactSupportOutlinedIcon from '@mui/icons-material/ContactSupportOutlin
 import PrivacyTipOutlinedIcon from '@mui/icons-material/PrivacyTipOutlined';
 import SupervisedUserCircleOutlinedIcon from '@mui/icons-material/SupervisedUserCircleOutlined';
 import ContactPageOutlinedIcon from '@mui/icons-material/ContactPageOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { Avatar, Typography } from '@material-ui/core';
-import { Link } from '@material-ui/core';
+import { Link, Divider } from '@material-ui/core';
 import './SideNav.css'
 
 
 export default function SideNav() {
     return(
-        <Sidebar backgroundColor='transparent'>
+        <Sidebar className="sidebar" backgroundColor='transparent' style={{border:"none"}}>
             <div className='sidebar-header'>
                 <div className='sidebar-avatar'>
                     <Avatar />
                 </div>
                 <div className='sidebar-text'>
-                    <Typography variant='h6'>Welcome, Jacob</Typography>
+                    <Typography className='sidebar-welcome' variant='h6'>Welcome, Jacob</Typography>
                     <Typography variant='subtitle2'> Your Budget Overiew</Typography>
                 </div>
             </div>
@@ -40,20 +41,28 @@ export default function SideNav() {
                     Support
                 </MenuItem>
                 */}
+                {/*
                 <MenuItem 
                     component={<Link href="/privacy" />}
                     icon={<PrivacyTipOutlinedIcon/>}>
                     Privacy
                 </MenuItem>
+                */}
                 <MenuItem
                     component={<Link href="/about-us" />}
                     icon={<SupervisedUserCircleOutlinedIcon/>}>
                     About Us
                 </MenuItem>
+                {/*
                 <MenuItem 
                     component={<Link href="/contact-us" />}
                     icon={<ContactPageOutlinedIcon/>}>
                     Contact Us
+                </MenuItem>
+                */}
+                <MenuItem
+                    icon={<LogoutIcon/>}>
+                    Sign Out
                 </MenuItem>
             </Menu>
         </Sidebar>

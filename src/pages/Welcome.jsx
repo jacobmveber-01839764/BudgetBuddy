@@ -22,7 +22,7 @@ export default function Welcome() {
                     <Button className='mx-0 mb-4' variant="outline-success" href="/signup">Get Started</Button>
                 </Col>
                 <Col className='d-flex' md={4}>
-                    <Image className='align-self-end' src={budgethero} fluid />
+                    <Image className='align-self-end w-100' src={budgethero} fluid />
                 </Col>
             </Row>
         </Container>
