@@ -9,9 +9,21 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { Avatar, Typography } from '@material-ui/core';
 import { Link, Divider } from '@material-ui/core';
 import './SideNav.css'
+import { useState, useEffect } from 'react'
+import {getName, handleLogout} from "../utils/utils";
 
 
 export default function SideNav() {
+    const [firstName, setFirstName] = useState(null);
+
+    useEffect(() => {
+        async function fetchFirstName() {
+            const name = await getName();
+            setFirstName(name.split(" ")[0]);
+        }
+        fetchFirstName();
+    }, []);
+
     return(
         <Sidebar className="sidebar" backgroundColor='transparent' style={{border:"none"}}>
             <div className='sidebar-header'>
@@ -19,7 +31,7 @@ export default function SideNav() {
                     <Avatar />
                 </div>
                 <div className='sidebar-text'>
-                    <Typography className='sidebar-welcome' variant='h6'>Welcome, Jacob</Typography>
+                    <Typography className='sidebar-welcome' variant='h6'>Welcome, {firstName}</Typography>
                     <Typography variant='subtitle2'> Your Budget Overiew</Typography>
                 </div>
             </div>
@@ -61,6 +73,7 @@ export default function SideNav() {
                 </MenuItem>
                 */}
                 <MenuItem
+                    onClick={handleLogout}
                     icon={<LogoutIcon/>}>
                     Sign Out
                 </MenuItem>

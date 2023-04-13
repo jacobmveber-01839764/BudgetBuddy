@@ -4,31 +4,29 @@ import { Toolbar, Typography, Button, IconButton, Link } from "@material-ui/core
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import logo from "../assets/BudgetBuddyLogo.png"
 import "./NavBar.css"
-import {checkLogin, getFirstName} from "../utils/utils";
+import {checkLogin, getName, handleLogout} from "../utils/utils";
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useEffect, useState } from "react";
+import { async } from "q";
 
 export default function NavBar() {
-    const handleLogin = () => {
-        window.location.href='/login';
-    }
+    const [name, setName] = useState(null);
 
-    const handleSignup = () => {
-        window.location.href='/signup';
-    }
-    
-    const handleLogout= () => {
-        document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
-        window.location.href='/welcome';
-    }
-
+    useEffect(() => {
+        async function fetchName() {
+            const name = await getName();
+            setName(name);
+        }
+        fetchName();
+    }, []);
 
     return (
         <Toolbar position="sticky" className="bar">
-            <Link href="/" className="nav-brand">
+            <Link href="/" className="nav-brand" underline="none">
                 <img src={logo} className="logo w-100"/>
                 <Typography 
-                    className="nav-header"
-                    variant="h5" >
+                    variant="h5"
+                    className="nav-header">
                     BudgetBuddy
                 </Typography>
             </Link>
@@ -36,17 +34,17 @@ export default function NavBar() {
                 {checkLogin()
                     ? // Logged In
                         <div>
-                            <NavDropdown title={`Logged in as ${getFirstName()}`}>
-                                <NavDropdown.Item>Profile</NavDropdown.Item>
-                                <NavDropdown.Item>My account</NavDropdown.Item>
+                            <NavDropdown title={`Logged in as ${name}`}>
+                                <NavDropdown.Item href="/settings">Settings</NavDropdown.Item>
+                                <NavDropdown.Item href="/about-us">About Us</NavDropdown.Item>
                                 <NavDropdown.Item onClick={handleLogout}>Sign Out</NavDropdown.Item>
                             </NavDropdown>
                         </div>
                     : // Logged Out
                     <span className="mx-0" style={{display: "flex"}}> 
-                        <Button  className="mx-0" onClick={handleLogin}>Login</Button>
+                        <Button  className="mx-0" href="/login">Login</Button>
                         <p style={{marginTop: "9px"}}>or</p>
-                        <Button className="mx-0" onClick={handleSignup}>Signup</Button>
+                        <Button className="mx-0" href="/signup">Signup</Button>
                     </span>
                 }
             </div>

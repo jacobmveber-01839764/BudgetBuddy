@@ -11,12 +11,15 @@
 .nav-brand {
     display: flex;
     align-items: center;
-    text-decoration: none;
-    color: inherit;
 }
 
-.nav-brand:hover {
-    color: inherit;
+.nav-header {
+    text-decoration: none;
+    color: black;
+}
+
+.nav-header:hover {
+    color: black;
 }
 
 .nav-login-control {

@@ -12,7 +12,7 @@ import AddIncome from '../components/AddIncome'
 export default function Dashboard() {
   return (
 		<AppProvider>
-			<div className='container'>
+			<div className='container-fluid'>
 				<h1 className='mt-3'>My Budget Planner</h1>
 				<div className='row mt-3'>
 					<div className='col-sm'>
