@@ -75,7 +75,7 @@ Response:
 to the user's current session token.
 
 
-Prepend all request under the auth router with '/auth'
+Prepend all request under the widget router with '/w'
 
 e.g. `/w/balance`
 ## GET /balance
