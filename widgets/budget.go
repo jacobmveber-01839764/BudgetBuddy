@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/jacobmveber-01839764/BudgetBuddy/db"
 	"github.com/jacobmveber-01839764/BudgetBuddy/money"
@@ -94,7 +95,7 @@ func SetCategoryBudget(w http.ResponseWriter, r *http.Request) {
 
 	// get form values
 	r.ParseForm()
-	cat := r.FormValue("category")
+	cat := strings.ToLower(r.FormValue("category"))
 	if cat == "" {
 		w.WriteHeader(http.StatusBadRequest)
 		fmt.Fprintf(w, "{\"error\":\"category must be specified\"}")
