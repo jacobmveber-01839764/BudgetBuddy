@@ -29,7 +29,6 @@ export default function Login() {
                 document.cookie = `session=${session}; path=/;`
                 window.location.href = '/dashboard';
             }
-
             console.log(data); // Log the response from the server
         })
         .catch((error) => {

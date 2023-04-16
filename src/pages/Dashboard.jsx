@@ -8,13 +8,14 @@ import ExpenseList from '../components/ExpenseList';
 import AddExpenseForm from '../components/AddExpenseForm';
 import RemainingBudget from '../components/Remaining';
 import AddIncome from '../components/AddIncome'
+import CategorizedBudget from '../components/CategorizedBudget';
+import { Typography } from '@mui/material';
 
 export default function Dashboard() {
   return (
 		<AppProvider>
 			<div className='container-fluid'>
-				<h1 className='mt-3'>My Budget Planner</h1>
-				<div className='row mt-3'>
+				<div className='row align-items-stretch'>
 					<div className='col-sm'>
 						<Budget />
 					</div>
@@ -27,19 +28,24 @@ export default function Dashboard() {
 				</div>
 				
 				<div className='row mt-3'>
-					<div className='col-sm alert alert-secondary'>
-						<h3 className='mt-3'>Expenses</h3><ExpenseList />
+					<div className='col'>
+						<ExpenseList />
 					</div>
 				</div>
 				<div className='row mt-3'>
-					<div className='col-sm'>
+					<div className='col'>
 						<AddExpenseForm />
 					</div>
 				</div>
-				
+
 				<div className='row mt-3'>
-					<div className='col-sm'>
-						{/*<h3 className='mt-3'>Add Income</h3><AddIncome /> */}
+					<div className='col-12 col-lg-6'>
+						<CategorizedBudget/>
+					</div>
+					<div className='col-12 col-lg-6'>
+						<div className='widget'>
+
+						</div>
 					</div>
 				</div>
 			</div>
