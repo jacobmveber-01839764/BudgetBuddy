@@ -11,6 +11,7 @@ import { async } from "q";
 
 export default function NavBar() {
     const [name, setName] = useState(null);
+    
 
     useEffect(() => {
         async function fetchName() {
@@ -21,11 +22,11 @@ export default function NavBar() {
     }, []);
 
     return (
-        <Toolbar position="sticky" className="bar">
+        <Toolbar position="sticky" className="navbar bar py-3 px-4">
             <Link href="/" className="nav-brand" underline="none">
                 <img src={logo} className="logo w-100"/>
                 <Typography 
-                    variant="h5"
+                    variant="h4"
                     className="nav-header">
                     BudgetBuddy
                 </Typography>

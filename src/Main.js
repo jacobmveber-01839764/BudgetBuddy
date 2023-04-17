@@ -71,7 +71,7 @@ export default function Main() {
                 <ProSidebarProvider>
                     <div className="main-body">
                         <SideNav />
-                        <div className="page-display elevated">
+                        <div className="page-display">
                             <Layout />
                         </div>
                     </div>

@@ -13,39 +13,39 @@ code {
 }
 
 .app {
-  background-color: #F7F7F2;
-  color: #444444;
+  background-color: #EFEFE6;
+  color: #191910;
   min-height: 100vh;
 }
 
 .main-body {
   display: flex;
-  width: 100vw;
+  width: 100%;
 }
 
 .page-display {
-  margin: 0 40px;
+  padding: 0 10px;
   margin-bottom: 30px;
-  border-radius: 20px;
-  padding: 20px 30px;
-  width: 100vw;
-  background-color: #FFFFFF;
-  /*display: grid; COMMENTED OUT BY CHRIS FOR PUSH ON WIDGETS, not sure if need for welcome page or not, do not need anymore for widgets
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 125px 250px 100px 100px;
-  gap: 10px;
-  padding: 10px;
-  box-sizing: border-box; */
+  width: 100%;
 }
 
 .elevated {
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.page-display div {
-  padding: 10px;
-}
-
 .page-display > * {
   margin: 0;
+}
+
+.widget {
+  border-radius: 10px;
+  padding: 15px 20px;
+  height: 100%;
+  background-color: #F7F7F3;
+  filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.10));
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #5672C7 !important;
+  border-color: #4766C2 !important;
 }

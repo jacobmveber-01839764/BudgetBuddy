@@ -31,7 +31,7 @@ export default function SideNav() {
                     <Avatar />
                 </div>
                 <div className='sidebar-text'>
-                    <Typography className='sidebar-welcome' variant='h6'>Welcome, {firstName}</Typography>
+                    <Typography className='sidebar-welcome' variant='h6'>Welcome, {firstName}!</Typography>
                     <Typography variant='subtitle2'> Your Budget Overiew</Typography>
                 </div>
             </div>

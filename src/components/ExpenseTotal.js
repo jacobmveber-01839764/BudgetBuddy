@@ -11,7 +11,7 @@ const ExpenseTotal = () => {
 	}, 0);
 
 	return (
-		<div className='alert alert-secondary p-4'>
+		<div className='widget p-4'>
 			<img src={logo}></img>
 			<span>This Month's Expenses: ${total}</span>
 		</div>

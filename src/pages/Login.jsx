@@ -15,7 +15,7 @@ export default function Login() {
         formData.append('password', password);
 
         // Send the form data via HTTP using Fetch API
-        fetch(`http://127.0.0.1:3030/auth/login?email=${email}&password=${password}`, {
+        fetch(`https://api.bb.gabefarrell.com/auth/login?email=${email}&password=${password}`, {
             method: 'POST',
             body: formData,
         })
@@ -29,7 +29,6 @@ export default function Login() {
                 document.cookie = `session=${session}; path=/;`
                 window.location.href = '/dashboard';
             }
-
             console.log(data); // Log the response from the server
         })
         .catch((error) => {

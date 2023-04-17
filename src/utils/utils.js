@@ -11,7 +11,7 @@ export function checkLogin() {
   return false;
 }
 
-function getSessionKey() {
+export function getSessionKey() {
   var cookies = document.cookie.split(';');
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i].trim(); // Remove any leading or trailing whitespace
@@ -24,16 +24,15 @@ function getSessionKey() {
 
 export async function getName() {
   try {
-    const response = await fetch('http://127.0.0.1:3030/userinfo', {
+    const response = await fetch('https://api.bb.gabefarrell.com/userinfo', {
       method: 'GET',
       headers: {
         'x-session-key': getSessionKey(),
       },
     });
     const data = await response.json();
-    const firstName = data.name;
-    console.log(firstName); // Logs the first name correctly
-    return firstName;
+    const name = data.name;
+    return name;
   } catch (error) {
     console.error(error);
   }

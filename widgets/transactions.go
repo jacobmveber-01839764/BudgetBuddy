@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/jacobmveber-01839764/BudgetBuddy/db"
@@ -113,7 +114,7 @@ func NewTransaction(w http.ResponseWriter, r *http.Request) {
 	if r.FormValue("category") == "" {
 		cat = "uncategorized"
 	} else {
-		cat = r.FormValue("category")
+		cat = strings.ToLower(r.FormValue("category"))
 	}
 
 	newT := db.Transaction{
@@ -129,10 +130,10 @@ func NewTransaction(w http.ResponseWriter, r *http.Request) {
 
 	var newArr []db.Transaction
 	var success bool
-	if r.FormValue("type") == "income" {
+	if strings.ToLower(r.FormValue("type")) == "income" {
 		newArr = append(user.Income, newT)
 		success = addToBalance(user, newT.Amount)
-	} else if r.FormValue("type") == "expenses" {
+	} else if strings.ToLower(r.FormValue("type")) == "expenses" {
 		newArr = append(user.Expenses, newT)
 		success = subtractFromBalance(user, newT.Amount)
 	} else {
