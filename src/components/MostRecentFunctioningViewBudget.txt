@@ -1,0 +1,58 @@
+import React, {useState, useEffect} from 'react';
+import './css/ViewBudget.css'
+import logo from './widget_logos/current_balance_logo.png';
+
+function FetchAPI() {
+	const [data, setData] = useState('')
+
+	
+	useEffect(() => {
+	const apiGet = () => {
+		fetch('http://127.0.0.1:3030/w/balance', {
+			METHOD: 'GET',
+			headers: {
+				'x-session-key': "b36efa01-7824-4f61-a274-63131b58d8fe"
+			}
+		}
+		)
+		.then((response) => response.json())
+		.then(data => setData(data.balance));
+	};
+	apiGet();
+
+	}, [])
+		
+	function saveData() {
+		let item = {data}
+		console.warn(data.balance);
+		// fetch('http://127.0.0.1:3030/w/balance', {
+		// 	METHOD: 'POST',
+		// 	headers: {
+		// 		'x-session-key': "b36efa01-7824-4f61-a274-63131b58d8fe"
+		// 	},
+		// 	body:JSON.stringify(data)
+		// }
+		// )
+		// .then((response) => response.json())
+		// .then(data => setData(data.balance));
+	}
+	return (
+		<>
+			{/* <img src={logo}></img> 
+			<span>Current Balance: ${data}</span> */}
+			{/* <button onClick={apiGet()}> TEST</button> */}
+			 <div>{JSON.stringify(data)}</div> 
+			 <div>
+				<input type="text" data="data" value={data.balance} onChange={(e)=>{setData(e.target.value)}}></input>
+			 	<button type="button" onClick={saveData}>Update Balance</button>
+			</div>
+			 
+			{/* <div> {data && data.map((item) => <p>{data.body}</p>)}</div> */}
+			{/* <button type='button' className='btn btn-primary' onClick={props.handleEditClick}>
+				Edit
+			</button> */}
+		</>
+	);
+};
+
+export default FetchAPI;
