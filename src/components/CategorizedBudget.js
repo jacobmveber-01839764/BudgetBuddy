@@ -13,7 +13,7 @@ export default function CategorizedBudget() {
     useEffect(() => {
       async function getChartData() {
         try {
-          fetch('http://127.0.0.1:3030/w/budget', {
+          fetch('https://api.bb.gabefarrell.com/w/budget', {
             method: 'GET',
             headers: {
               'x-session-key' : 'b36efa01-7824-4f61-a274-63131b58d8fe',

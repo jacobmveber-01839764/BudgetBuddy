@@ -24,7 +24,7 @@ export function getSessionKey() {
 
 export async function getName() {
   try {
-    const response = await fetch('http://127.0.0.1:3030/userinfo', {
+    const response = await fetch('https://api.bb.gabefarrell.com/userinfo', {
       method: 'GET',
       headers: {
         'x-session-key': getSessionKey(),

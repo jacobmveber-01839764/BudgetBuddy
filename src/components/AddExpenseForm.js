@@ -14,7 +14,7 @@ const AddExpenseForm = (props) => {
 
 	useEffect(() => {
         try {
-			fetch('http://127.0.0.1:3030/w/budget', {
+			fetch('https://api.bb.gabefarrell.com/w/budget', {
 			  method: 'GET',
 			  headers: {
 				'x-session-key' : getSessionKey(),
@@ -57,7 +57,7 @@ const AddExpenseForm = (props) => {
 		formData.append('type', type)
 
 		try {
-			fetch(`http://127.0.0.1:3030/w/transactions?whole=${whole}&decimal=${decimal}&currency=${currency}&category=${category}&type=${type}`, {
+			fetch(`https://api.bb.gabefarrell.com/w/transactions?whole=${whole}&decimal=${decimal}&currency=${currency}&category=${category}&type=${type}`, {
 			  method: 'POST',
 			  body: formData,
 			  headers: {
