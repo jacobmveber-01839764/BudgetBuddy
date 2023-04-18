@@ -20,7 +20,7 @@ export default function FetchAPI() {
 
 	async function getBalance() {
 		try {
-		  const response = await fetch('http://127.0.0.1:3030/w/balance', {
+		  const response = await fetch('https://api.bb.gabefarrell.com/w/balance', {
 			method: 'GET',
 			headers: {
 			  'x-session-key': getSessionKey(),
@@ -71,7 +71,7 @@ export default function FetchAPI() {
 		  }
 		  formBody = formBody.join("&");
 
-		fetch('http://127.0.0.1:3030/w/balance', {
+		fetch('https://api.bb.gabefarrell.com/w/balance', {
 		  method: 'POST',
 		  body: formBody,
 		  headers: {

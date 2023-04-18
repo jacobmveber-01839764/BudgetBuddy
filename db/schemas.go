@@ -11,7 +11,8 @@ type UserSchema struct {
 	Session           string                 `json:"session" bson:"session"`
 	Balance           money.Money            `json:"balance" bson:"balance"`
 	Budget            money.Money            `json:"budget" bson:"budget"`
-	Categories        map[string]money.Money `json:"categories" bson:"categories"`
+	BudgetCategories  map[string]money.Money `json:"categories" bson:"categories"`
+	Categories        []string               `json:"categories_list" bson:"categories_list"`
 	Expenses          []Transaction          `json:"expenses" bson:"expenses"`
 	Income            []Transaction          `json:"income" bson:"income"`
 	RecurringExpenses []RecurringTransaction `json:"recurring_expenses" bson:"recurring_expenses"`

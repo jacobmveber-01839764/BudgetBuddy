@@ -47,10 +47,10 @@ func GetBudget(w http.ResponseWriter, r *http.Request) {
 	var response BudgetResponse
 
 	response.Budget = user.Budget
-	response.BudgetCategories = user.Categories
-	cats := make([]string, len(user.Categories))
+	response.BudgetCategories = user.BudgetCategories
+	cats := make([]string, len(user.BudgetCategories))
 	i := 0
-	for k := range user.Categories {
+	for k := range user.BudgetCategories {
 		cats[i] = k
 		i++
 	}
@@ -120,15 +120,16 @@ func SetCategoryBudget(w http.ResponseWriter, r *http.Request) {
 		Decimal:  newDecimal,
 	}
 
-	if user.Categories == nil {
-		user.Categories = make(map[string]money.Money)
+	if user.BudgetCategories == nil {
+		user.BudgetCategories = make(map[string]money.Money)
+		user.Categories = append(user.Categories, cat)
 	}
 
-	user.Categories[cat] = newBudget
+	user.BudgetCategories[cat] = newBudget
 
 	filter := bson.D{primitive.E{Key: "session", Value: session}}
 	opts := options.Update().SetUpsert(true)
-	update := bson.D{primitive.E{Key: "$set", Value: bson.D{primitive.E{Key: "categories", Value: user.Categories}}}}
+	update := bson.D{primitive.E{Key: "$set", Value: bson.D{primitive.E{Key: "categories", Value: user.BudgetCategories}}}}
 	_, err = userCollection.UpdateOne(context.TODO(), filter, update, opts)
 	if err != nil {
 		w.WriteHeader(http.StatusUnauthorized)
