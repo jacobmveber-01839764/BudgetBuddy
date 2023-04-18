@@ -84,9 +84,9 @@ export default function Login() {
                     <p className="forgot-password">
                         Don't have an account? <a href="/signup">sign up</a>
                     </p>
-                    <p className="forgot-password">
+                    {/* <p className="forgot-password">
                     Forgot <a href="#">password?</a>
-                    </p>
+                    </p> */}
                 </form>
             </div>
         </div>
