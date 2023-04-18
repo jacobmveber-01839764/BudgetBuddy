@@ -11,6 +11,7 @@ const AddExpenseForm = (props) => {
 	const [cost, setCost] = useState('');
 	const [category, setCategory] = useState('');
 	const [categoryList, setCategoryList] = useState([]);
+	const [isExpense, setIsExpense] = useState(true);
 
 	useEffect(() => {
         try {
@@ -25,13 +26,35 @@ const AddExpenseForm = (props) => {
 				if (data.status != 200) {
 					console.log(data.error);
 			  	} else {
-					setCategoryList(data.categories);
+					isExpense 
+						? setCategoryList(Object.keys(data.expenses))
+						: setCategoryList(Object.keys(data.income));
 			  	}
 			})
 		} catch(error) {
 			console.error(error);
 		}
 	}, [])
+  
+	const toggleTransactionType = () => {
+		setIsExpense(!isExpense);
+		fetch('https://api.bb.gabefarrell.com/w/budget', {
+			  method: 'GET',
+			  headers: {
+				'x-session-key' : getSessionKey(),
+			}
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.status != 200) {
+				console.log(data.error);
+			} else {
+				isExpense 
+					? setCategoryList(Object.keys(data.expenses))
+					: setCategoryList(Object.keys(data.income));
+		  	}
+		})
+	};
 
 	const onSubmit = (event) => {
 		event.preventDefault();
@@ -41,7 +64,7 @@ const AddExpenseForm = (props) => {
 		let currency = "USD"
 		let whole = 0;
 		let decimal = 0;
-		let type = 'expenses';
+		let type = isExpense ? 'expenses' : 'income';
 
 
 		if (cost.includes(".")) {
@@ -76,19 +99,6 @@ const AddExpenseForm = (props) => {
 			console.error(error);
 		}
 
-		/*
-		const expense = {
-			id: uuidv4(),
-			name,
-			cost: parseInt(cost),
-		};
-
-		dispatch({
-			type: 'ADD_EXPENSE',
-			payload: expense,
-		});
-		*/
-
 		setName('');
 		setCost('');
 	};
@@ -106,23 +116,7 @@ const AddExpenseForm = (props) => {
 
 	return (
 		<div className='widget'>
-			<h4>Add Expense</h4>
-			<form onSubmit={onSubmit}>
-				<div className='row'>
-					{/*
-					<div className='col-md col-lg-4'>
-						<label htmlFor='name'>Name</label>
-						<input
-							required='required'
-							type='text'
-							className='form-control'
-							id='name'
-							value={name}
-							onChange={(event) => setName(event.target.value)}
-						></input>
-					</div>  
-					*/}
-				</div>
+			<h4>Add Transaction</h4>
 				<div className='row'>
 					<div className='col-md col-lg-4'>
 						<label htmlFor='cost'>Cost</label>
@@ -153,15 +147,17 @@ const AddExpenseForm = (props) => {
 				</div>
 				<div className='row mt-3'>
 					<div className='col-sm'>
-						<button type='submit' className='btn btn-primary'>
-							Add Expense
+						<button type='submit' onClick={onSubmit} className='btn btn-primary' style={{marginRight:"12px"}}>
+							Add {isExpense ? 'Expense' : 'Income'}
 						</button>
-						<button className='btn btn-primary mx-3' onClick={handleAddCategory}>
+						<button className='btn btn-primary' onClick={handleAddCategory} style={{marginRight:"12px"}}>
 							Add New Category
+						</button>
+						<button onClick={toggleTransactionType}>
+							{isExpense ? 'EXPENSE' : 'INCOME'}
 						</button>
 					</div>
 				</div>
-			</form>
 		</div>
 	);
 };

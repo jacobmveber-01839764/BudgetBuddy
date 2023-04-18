@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { AppProvider } from '../context/AppContext';
-import FetchAPI from '../components/budget';
+import FetchAPI from '../components/Budget';
 import ExpenseTotal from '../components/ExpenseTotal';
 import ExpenseList from '../components/ExpenseList';
 import AddExpenseForm from '../components/AddExpenseForm';

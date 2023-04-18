@@ -42,3 +42,7 @@ export function handleLogout() {
   document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
   window.location.href='/welcome';
 }
+
+export function calculateValue(category) {
+  return category.whole + category.decimal * 0.01;
+}

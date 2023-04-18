@@ -3,7 +3,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, defaults } from 'chart.j
 
 import { AppProvider } from "../context/AppContext";
 import  { useState, useEffect } from 'react'
-import { getSessionKey } from '../utils/utils.js'
+import { calculateValue, getSessionKey } from '../utils/utils.js'
+import { Minimize } from "@material-ui/icons";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -16,7 +17,7 @@ export default function CategorizedBudget() {
           fetch('https://api.bb.gabefarrell.com/w/budget', {
             method: 'GET',
             headers: {
-              'x-session-key' : 'b36efa01-7824-4f61-a274-63131b58d8fe',
+              'x-session-key' : getSessionKey(),
             }
           })
           .then(response => response.json())
@@ -24,27 +25,25 @@ export default function CategorizedBudget() {
             if (data.status != 200) {
               console.log(data.error);
             } else {
+              
+              console.log(typeof data.expenses_by_category);
               const chartData = {
-                labels: [data.categories.length > 0 ? data.categories : "no expenses"],
+                labels: Object.keys(data.expenses).length > 0 ? Object.keys(data.expenses) : [ "no expenses"],
                 datasets: [
                   {
-                    data: data.expenses_by_category.length > 0 
-                      ? data.expenses_by_category.map(category => {
-                          return category['whole']
-                        })
-                      : [1],
+                    data: Object.values(data.expenses_by_category).map(category => {
+                      return calculateValue(category);
+                    }),
                     backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)',
+                      '#FFC857',
+                      '#ED8146',
+                      '#DB3A34',
+                      '#5672C7',
                     ],
                     borderColor: [
-                      "black"
+                      "white"
                     ],
-                    borderWidth: 1,
+                    borderWidth: 2,
                   },
                 ],
               }
