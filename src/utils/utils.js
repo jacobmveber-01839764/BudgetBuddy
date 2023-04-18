@@ -1,24 +1,22 @@
-export function checkLogin() {
+export async function checkLogin() {
   var cookies = document.cookie.split(';');
     if (getSessionKey() !== null) {
       // The "session" cookie exists
-      fetch('https://api.bb.gabefarrell.com/userinfo', {
+      let result = await fetch('https://api.bb.gabefarrell.com/userinfo', {
         method: 'GET',
         headers: {
           'x-session-key': getSessionKey(),
         },
       })
-      .then(data => data.json())
-      .then((r) => {
-        if (r.status !== 200) {
-          // key is invalid
-          handleLogout()
-          return false
-        } else {
-          // key is OK
-          return true
-        }
-      })
+      result = await result.json()
+      if (result.status !== 200) {
+        // key is invalid
+        handleLogout()
+        return false
+      } else {
+        // key is OK
+        return true
+      }
    }
   // The "session" cookie doesn't exist or is invalid
   return false;
