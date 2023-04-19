@@ -1,26 +1,9 @@
 export function checkLogin() {
-  var cookies = document.cookie.split(';');
     if (getSessionKey() !== null) {
       // The "session" cookie exists
-      fetch('https://api.bb.gabefarrell.com/userinfo', {
-        method: 'GET',
-        headers: {
-          'x-session-key': getSessionKey(),
-        },
-      })
-      .then(data => data.json())
-      .then((result) => {
-        if (result.status !== 200) {
-          // key is invalid
-          handleLogout()
-          return false
-        } else {
-          // key is OK
-          return true
-        }
-      })
+      return true
    } else {
-    // The "session" cookie doesn't exist or is invalid
+    // The "session" cookie doesn't exist
     return false;
    }
 }
