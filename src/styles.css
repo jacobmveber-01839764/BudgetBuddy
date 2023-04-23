@@ -49,3 +49,7 @@ code {
   background-color: #5672C7 !important;
   border-color: #4766C2 !important;
 }
+
+.m-right {
+  margin-right: 10px;
+}

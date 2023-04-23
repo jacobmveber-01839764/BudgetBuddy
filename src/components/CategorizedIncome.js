@@ -8,13 +8,13 @@ import { Minimize } from "@material-ui/icons";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function CategorizedIncome() {
+export default function CategorizedExpenses(props) {
     const [chartData, setChartData] = useState(null);
 
     useEffect(() => {
       async function getChartData() {
         try {
-          fetch('https://api.bb.gabefarrell.com/w/budget', {
+          fetch('https://api.bb.gabefarrell.com/w/income', {
             method: 'GET',
             headers: {
               'x-session-key' : getSessionKey(),
@@ -24,28 +24,33 @@ export default function CategorizedIncome() {
           .then(data => {
             if (data.status != 200) {
               console.log(data.error);
-            } else {
-              
+            } else {             
               const chartData = {
-                labels: Object.keys(data.income).length > 0 ? Object.keys(data.income) : [ "no income"],
-                datasets: [
-                  {
-                    data: Object.values(data.income_by_category).map(category => {
-                      return calculateValue(category);
-                    }),
-                    backgroundColor: [
-                      '#FFC857',
-                      '#ED8146',
-                      '#DB3A34',
-                      '#5672C7',
-                    ],
-                    borderColor: [
-                      "white"
-                    ],
-                    borderWidth: 2,
-                  },
-                ],
+                labels: Object.keys(data.income_by_category).length > 0 ? Object.keys(data.income_by_category) : ["No income."],
+                datasets: [{
+                  data: Object.values(data.income_by_category).map((category) => {
+                    return calculateValue(category);
+                  }),
+                  label: "Total cost",
+                  backgroundColor: [ 
+                    '#61B06E',
+                    '#8166CC',
+                    '#ED8146',
+                    '#B0BC63',
+                    '#5672C7',
+                    '#E45E3D',
+                    '#FFC857',
+                    '#5C919B',
+                    '#DB3A34',
+                    '#F6A54F'
+                  ],
+                  borderColor: [
+                    "white"
+                  ],
+                  borderWidth: 2,
+                }],
               }
+                          
               setChartData(chartData);
             }
           })

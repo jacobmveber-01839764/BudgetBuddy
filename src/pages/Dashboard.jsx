@@ -1,4 +1,5 @@
 import React from 'react';
+import  { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { AppProvider } from '../context/AppContext';
@@ -8,12 +9,14 @@ import ExpenseList from '../components/ExpenseList';
 import AddExpenseForm from '../components/AddExpenseForm';
 import RemainingBudget from '../components/Remaining';
 import AddIncome from '../components/AddIncome'
+import QuickTransaction from '../components/QuickTransaction'
 import CategorizedExpenses from '../components/CategorizedExpenses';
 import CategorizedIncome from '../components/CategorizedIncome';
 import { Typography } from '@mui/material';
 
 export default function Dashboard() {
-  return (
+
+  	return (
 		<AppProvider>
 			<div className='container-fluid'>
 				<div className='row align-items-stretch'>
@@ -30,21 +33,19 @@ export default function Dashboard() {
 				
 				<div className='row mt-3'>
 					<div className='col'>
-						<ExpenseList />
+						<AddExpenseForm/>
 					</div>
-				</div>
-				<div className='row mt-3'>
 					<div className='col'>
-						<AddExpenseForm />
+						<ExpenseList />
 					</div>
 				</div>
 
 				<div className='row mt-3'>
 					<div className='col-12 col-lg-6'>
-						<CategorizedExpenses type={"expenses"}/>
+						<CategorizedExpenses/>
 					</div>
 					<div className='col-12 col-lg-6'>
-						<CategorizedExpenses type={"income"}/>
+						<CategorizedIncome/>
 					</div>
 				</div>
 			</div>

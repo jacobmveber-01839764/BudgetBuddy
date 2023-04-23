@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './AddExpenseForm.css'
 import { getSessionKey } from '../utils/utils.js'
 
-const AddExpenseForm = (props) => {
+export default function QuickTransaction(props) {
 	const { dispatch } = useContext(AppContext);
 
 	const [cost, setCost] = useState('');
@@ -119,10 +119,6 @@ const AddExpenseForm = (props) => {
 		}
 	}
 
-	const quickSet = (event) => {
-		setCost(event.target.value)
-	}
-
 	return (
 		<div className='widget'>
 			<h4>Add Transaction</h4>
@@ -154,46 +150,19 @@ const AddExpenseForm = (props) => {
 						</select>
 					</div>
 				</div>
-
-				<div className='row mt-2'>
-					<div className='col'>
-						<button className='btn btn-outline-success m-right' value={1} onClick={quickSet}>
-							$1
-						</button>
-						<button className='btn btn-outline-success m-right' value={5} onClick={quickSet}>
-							$5
-						</button>
-						<button className='btn btn-outline-success m-right' value={10} onClick={quickSet}>
-							$10
-						</button>
-						<button className='btn btn-outline-success m-right' value={15} onClick={quickSet}>
-							$15
-						</button>
-						<button className='btn btn-outline-success m-right' value={20} onClick={quickSet}>
-							$20
-						</button>
-						<button className='btn btn-outline-success m-right' value={50} onClick={quickSet}>
-							$50
-						</button>
-					</div>
-				</div>
-
-				<div className='row mt-2'>
+				<div className='row mt-3'>
 					<div className='col-sm'>
-						<button className='btn btn-dark m-right' onClick={toggleTransactionType}>
-							{transactionType.toUpperCase()}
-						</button>
-						<button type='submit' onClick={onSubmit} id="add-transaction-button" className='btn btn-primary m-right'>
+						<button type='submit' onClick={onSubmit} id="add-transaction-button" className='btn btn-primary' style={{marginRight:"12px"}}>
 							Add {transactionType.substring(0, 1).toUpperCase() + transactionType.substring(1)}
 						</button>
-						<button className='btn btn-primary' onClick={handleAddCategory}>
+						<button className='btn btn-primary' onClick={handleAddCategory} style={{marginRight:"12px"}}>
 							Add New Category
+						</button>
+						<button onClick={toggleTransactionType}>
+							{transactionType.toUpperCase()}
 						</button>
 					</div>
 				</div>
-
 		</div>
 	);
 };
-
-export default AddExpenseForm;

@@ -8,8 +8,10 @@ import { Minimize } from "@material-ui/icons";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function CategorizedExpenses() {
+export default function CategorizedExpenses(props) {
     const [chartData, setChartData] = useState(null);
+    
+
 
     useEffect(() => {
       async function getChartData() {
@@ -25,30 +27,24 @@ export default function CategorizedExpenses() {
             if (data.status != 200) {
               console.log(data.error);
             } else {
-              let categories = [];
-              let values = [];
-
-              Object.values(data.expenses).map((transactions) => {
-                let cost = 0;
-                categories.push(transactions[0].category)
-                transactions.forEach(transaction => {
-                  cost += calculateValue(transaction.amount);
-                });
-                
-                values.push(cost);
-              });
-              if (categories.length == 0) categories = [`No expenses`];
-
               const chartData = {
-                labels: categories,
+                labels:  Object.keys(data.expenses_by_category).length > 0 ? Object.keys(data.expenses_by_category) : ["No income."],
                 datasets: [{
-                  data: values,
+                  data: Object.values(data.expenses_by_category).map((category) => {
+                    return calculateValue(category);
+                  }),
                   label: "Category",
                   backgroundColor: [ 
                     '#FFC857',
-                    '#ED8146',
+                    '#5C919B',
                     '#DB3A34',
+                    '#F6A54F',
+                    '#61B06E',
+                    '#8166CC',
+                    '#ED8146',
+                    '#B0BC63',
                     '#5672C7',
+                    '#E45E3D'
                   ],
                   borderColor: [
                     "white"
@@ -68,7 +64,7 @@ export default function CategorizedExpenses() {
         }
       }
       getChartData();
-    });
+    }, []);
 
     if (!chartData) {
         return <p>Loading...</p>

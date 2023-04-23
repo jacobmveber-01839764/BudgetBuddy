@@ -40,6 +40,6 @@ export function handleLogout() {
   window.location.href='/welcome';
 }
 
-export function calculateValue(amount) {
-  return amount.whole + amount.decimal * 0.01;
+export function calculateValue(category) {
+  return category.whole + category.decimal * 0.01;
 }
