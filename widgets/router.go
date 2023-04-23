@@ -24,6 +24,7 @@ func Router() *chi.Mux {
 
 	// income
 	r.Get("/income/month", GetMonthIncome)
+	r.Get("/income", IncomeByCategory)
 
 	return r
 }

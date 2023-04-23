@@ -248,3 +248,20 @@ Response:
   "decimal": int,
 }
 ```
+## GET /income
+Get the total amount of income in each category
+
+Response:
+```json
+{
+  "status": int,
+  "income_by_category": {
+    "example_category": {
+      "currency": string,
+      "whole": int,
+      "decimal": int,
+    },
+    ...
+  }
+}
+```

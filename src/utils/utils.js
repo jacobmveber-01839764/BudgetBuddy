@@ -1,14 +1,11 @@
 export function checkLogin() {
-  var cookies = document.cookie.split(';');
-  for (var i = 0; i < cookies.length; i++) {
-    var cookie = cookies[i].trim();
-    if (cookie.indexOf('session=') === 0) {
+    if (getSessionKey() !== null) {
       // The "session" cookie exists
-      return true;
+      return true
+   } else {
+    // The "session" cookie doesn't exist
+    return false;
    }
-  }
-  // The "session" cookie doesn't exist
-  return false;
 }
 
 export function getSessionKey() {

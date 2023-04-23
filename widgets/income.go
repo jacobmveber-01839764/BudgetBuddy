@@ -13,6 +13,11 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+type IBCResponse struct {
+	Status           int                    `json:"status"`
+	IncomeByCategory map[string]money.Money `json:"income_by_category"`
+}
+
 func GetMonthIncome(w http.ResponseWriter, r *http.Request) {
 	// get session key from request
 	session := r.Header.Get("x-session-key")
@@ -52,4 +57,40 @@ func GetMonthIncome(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Write(ret)
+}
+
+func IncomeByCategory(w http.ResponseWriter, r *http.Request) {
+	// get session key from request
+	session := r.Header.Get("x-session-key")
+
+	// get collection handle from db
+	var userCollection = db.Client.Database("budgetbuddy").Collection("users")
+
+	var user = db.UserSchema{}
+
+	err := userCollection.FindOne(context.Background(), bson.D{primitive.E{Key: "session", Value: session}}).Decode(&user)
+	if err != nil {
+		w.WriteHeader(http.StatusUnauthorized)
+		fmt.Fprintf(w, "{\"error\":\"invalid session key\"}")
+		return
+	}
+
+	var response IBCResponse
+
+	response.IncomeByCategory = make(map[string]money.Money)
+	for _, e := range user.Income {
+		response.IncomeByCategory[e.Category] = money.Add(e.Amount, response.IncomeByCategory[e.Category])
+	}
+
+	response.Status = 200
+
+	ret, err := json.Marshal(response)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		fmt.Fprintf(w, "{\"error\":\"problem marshalling response\"}")
+		return
+	}
+
+	w.Write(ret)
+
 }
