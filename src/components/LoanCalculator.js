@@ -34,9 +34,9 @@ const LoanCalculator = () => {
                 <FormInputGroup text="Loan Duration in Years" placeholder="Enter the duration of the loan in years" value={loanDuration} onInput={(event) => setLoanDuration(event.target.value)}/>
                 
                 <h4 className="alert alert-info fw-bold">
-                    Monthly Payment: ${parseFloat(monthlyPayment.toFixed(2))}
+                    Monthly Payment: ${monthlyPayment.toFixed(2)}
                     <h5 className="mt-4">Principal Paid: ${loanAmount}</h5>
-                    <h5>Interest Paid: ${parseFloat(interestPaid.toFixed(2))}</h5>
+                    <h5>Interest Paid: ${interestPaid.toFixed(2)}</h5>
                 </h4>
                 <button type="submit" className="btn btn-primary btn-lg w-100 mt-3 center" onClick={calculateMonthlyPayment}>Calculate</button>
             </form>
