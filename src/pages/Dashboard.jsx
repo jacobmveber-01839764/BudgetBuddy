@@ -13,6 +13,7 @@ import QuickTransaction from '../components/QuickTransaction'
 import CategorizedExpenses from '../components/CategorizedExpenses';
 import CategorizedIncome from '../components/CategorizedIncome';
 import { Typography } from '@mui/material';
+import LoanCalculator from '../components/LoanCalculator';
 
 export default function Dashboard() {
 
@@ -30,7 +31,7 @@ export default function Dashboard() {
 						<ExpenseTotal />
 					</div>
 				</div>
-				
+
 				<div className='row mt-3'>
 					<div className='col'>
 						<AddExpenseForm/>
