@@ -10,6 +10,7 @@ import RemainingBudget from '../components/Remaining';
 import AddIncome from '../components/AddIncome'
 import CategorizedBudget from '../components/CategorizedBudget';
 import { Typography } from '@mui/material';
+import LoanCalculator from '../components/LoanCalculator';
 
 export default function Dashboard() {
   return (
@@ -44,7 +45,7 @@ export default function Dashboard() {
 					</div>
 					<div className='col-12 col-lg-6'>
 						<div className='widget'>
-
+							<LoanCalculator/>
 						</div>
 					</div>
 				</div>
