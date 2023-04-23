@@ -8,7 +8,8 @@ import ExpenseList from '../components/ExpenseList';
 import AddExpenseForm from '../components/AddExpenseForm';
 import RemainingBudget from '../components/Remaining';
 import AddIncome from '../components/AddIncome'
-import CategorizedBudget from '../components/CategorizedBudget';
+import CategorizedExpenses from '../components/CategorizedExpenses';
+import CategorizedIncome from '../components/CategorizedIncome';
 import { Typography } from '@mui/material';
 
 export default function Dashboard() {
@@ -40,12 +41,10 @@ export default function Dashboard() {
 
 				<div className='row mt-3'>
 					<div className='col-12 col-lg-6'>
-						<CategorizedBudget/>
+						<CategorizedExpenses type={"expenses"}/>
 					</div>
 					<div className='col-12 col-lg-6'>
-						<div className='widget'>
-
-						</div>
+						<CategorizedExpenses type={"income"}/>
 					</div>
 				</div>
 			</div>

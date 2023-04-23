@@ -8,7 +8,7 @@ import { Minimize } from "@material-ui/icons";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function CategorizedBudget() {
+export default function CategorizedExpenses() {
     const [chartData, setChartData] = useState(null);
 
     useEffect(() => {
@@ -25,28 +25,38 @@ export default function CategorizedBudget() {
             if (data.status != 200) {
               console.log(data.error);
             } else {
-              
-              console.log(typeof data.expenses_by_category);
+              let categories = [];
+              let values = [];
+
+              Object.values(data.expenses).map((transactions) => {
+                let cost = 0;
+                categories.push(transactions[0].category)
+                transactions.forEach(transaction => {
+                  cost += calculateValue(transaction.amount);
+                });
+                
+                values.push(cost);
+              });
+              if (categories.length == 0) categories = [`No expenses`];
+
               const chartData = {
-                labels: Object.keys(data.expenses).length > 0 ? Object.keys(data.expenses) : [ "no expenses"],
-                datasets: [
-                  {
-                    data: Object.values(data.expenses_by_category).map(category => {
-                      return calculateValue(category);
-                    }),
-                    backgroundColor: [
-                      '#FFC857',
-                      '#ED8146',
-                      '#DB3A34',
-                      '#5672C7',
-                    ],
-                    borderColor: [
-                      "white"
-                    ],
-                    borderWidth: 2,
-                  },
-                ],
+                labels: categories,
+                datasets: [{
+                  data: values,
+                  label: "Category",
+                  backgroundColor: [ 
+                    '#FFC857',
+                    '#ED8146',
+                    '#DB3A34',
+                    '#5672C7',
+                  ],
+                  borderColor: [
+                    "white"
+                  ],
+                  borderWidth: 2,
+                }],
               }
+                          
               setChartData(chartData);
             }
           })
@@ -58,7 +68,7 @@ export default function CategorizedBudget() {
         }
       }
       getChartData();
-    }, []);
+    });
 
     if (!chartData) {
         return <p>Loading...</p>

@@ -7,11 +7,10 @@ import { getSessionKey } from '../utils/utils.js'
 const AddExpenseForm = (props) => {
 	const { dispatch } = useContext(AppContext);
 
-	const [name, setName] = useState('');
 	const [cost, setCost] = useState('');
 	const [category, setCategory] = useState('');
 	const [categoryList, setCategoryList] = useState([]);
-	const [isExpense, setIsExpense] = useState(true);
+	const [transactionType, setTransactionType] = useState('expenses');
 
 	useEffect(() => {
         try {
@@ -26,18 +25,23 @@ const AddExpenseForm = (props) => {
 				if (data.status != 200) {
 					console.log(data.error);
 			  	} else {
-					isExpense 
-						? setCategoryList(Object.keys(data.expenses))
-						: setCategoryList(Object.keys(data.income));
+					getCategoryList();
 			  	}
 			})
 		} catch(error) {
 			console.error(error);
 		}
-	}, [])
-  
+	}, [transactionType])
+
 	const toggleTransactionType = () => {
-		setIsExpense(!isExpense);
+		if (transactionType == "expenses") {
+			setTransactionType("income");
+		} else {
+			setTransactionType("expenses");
+		}
+	}
+  
+	const getCategoryList = () => {
 		fetch('https://api.bb.gabefarrell.com/w/budget', {
 			  method: 'GET',
 			  headers: {
@@ -49,9 +53,19 @@ const AddExpenseForm = (props) => {
 			if (data.status != 200) {
 				console.log(data.error);
 			} else {
-				isExpense 
-					? setCategoryList(Object.keys(data.expenses))
-					: setCategoryList(Object.keys(data.income));
+				let categories = [];
+				
+				Object.values(data.expenses).map((transactions) => {
+					transactions.forEach(transaction => {
+					  if (transaction.type == transactionType && !categories.includes(transaction.category)) {
+						categories.push(transaction.category)
+					  }
+					});
+				});
+
+				if (categories.length == 0) categories = ["Uncategorized"];
+				setCategoryList(categories);
+				setCategory(categories[0])
 		  	}
 		})
 	};
@@ -64,7 +78,6 @@ const AddExpenseForm = (props) => {
 		let currency = "USD"
 		let whole = 0;
 		let decimal = 0;
-		let type = isExpense ? 'expenses' : 'income';
 
 
 		if (cost.includes(".")) {
@@ -77,10 +90,12 @@ const AddExpenseForm = (props) => {
 		formData.append('currency', currency);
 		formData.append('whole', whole);
 		formData.append('decimal', decimal);
-		formData.append('type', type)
+		formData.append('type', transactionType)
+		
+		console.log(transactionType);
 
 		try {
-			fetch(`https://api.bb.gabefarrell.com/w/transactions?whole=${whole}&decimal=${decimal}&currency=${currency}&category=${category}&type=${type}`, {
+			fetch(`https://api.bb.gabefarrell.com/w/transactions?whole=${whole}&decimal=${decimal}&currency=${currency}&category=${category}&type=${transactionType}`, {
 			  method: 'POST',
 			  body: formData,
 			  headers: {
@@ -99,7 +114,6 @@ const AddExpenseForm = (props) => {
 			console.error(error);
 		}
 
-		setName('');
 		setCost('');
 	};
 
@@ -148,13 +162,13 @@ const AddExpenseForm = (props) => {
 				<div className='row mt-3'>
 					<div className='col-sm'>
 						<button type='submit' onClick={onSubmit} className='btn btn-primary' style={{marginRight:"12px"}}>
-							Add {isExpense ? 'Expense' : 'Income'}
+							Add {transactionType.substring(0, 1).toUpperCase() + transactionType.substring(1)}
 						</button>
 						<button className='btn btn-primary' onClick={handleAddCategory} style={{marginRight:"12px"}}>
 							Add New Category
 						</button>
 						<button onClick={toggleTransactionType}>
-							{isExpense ? 'EXPENSE' : 'INCOME'}
+							{transactionType.toUpperCase()}
 						</button>
 					</div>
 				</div>
