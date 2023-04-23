@@ -42,10 +42,13 @@ export default function Dashboard() {
 				</div>
 
 				<div className='row mt-3'>
-					<div className='col-12 col-lg-6'>
+					<div className='col-12 col-md-12 col-lg-4'>
+						<LoanCalculator/>
+					</div>
+					<div className='col-12 col-lg-4'>
 						<CategorizedExpenses/>
 					</div>
-					<div className='col-12 col-lg-6'>
+					<div className='col-12 col-lg-4'>
 						<CategorizedIncome/>
 					</div>
 				</div>
