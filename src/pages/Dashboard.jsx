@@ -24,11 +24,11 @@ export default function Dashboard() {
 					<div className='col-sm'>
 						<FetchAPI />
 					</div>
-					<div className='col-sm'>
+					<div className='col-sm widget d-flex align-items-center justify-content-between'>
 						<RemainingBudget />
 					</div>
 					<div className='col-sm'>
-						<ExpenseTotal />
+						{/* <ExpenseTotal /> */}
 					</div>
 				</div>
 
