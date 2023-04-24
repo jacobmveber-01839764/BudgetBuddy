@@ -10,7 +10,6 @@ const Settings = () => {
     const [newPassword, setNewPassword] = useState('');
     const [email, setEmail] = useState('');
     const [deleteAccount, setDeleteAccount] = useState('');
-    const [errorText, setErrorText] = useState(null);
     
     useEffect(() => {
         async function fetchName() {
