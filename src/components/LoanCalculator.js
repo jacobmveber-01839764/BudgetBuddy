@@ -29,9 +29,9 @@ const LoanCalculator = () => {
             <h4 className="mb-5">Loan Calculator</h4>
 
             <form onSubmit={(event) => event.preventDefault()}>
-                <FormInputGroup text="Loan Amount $" placeholder="Enter the value of the loan" value={loanAmount} onInput={(event) => setLoanAmount(event.target.value)}/>
-                <FormInputGroup text="Interest Rate %" placeholder="Enter interest rate of the loan" value={interestRate} onInput={(event) => setInterestRate(event.target.value)}/>
-                <FormInputGroup text="Loan Duration in Years" placeholder="Enter the duration of the loan in years" value={loanDuration} onInput={(event) => setLoanDuration(event.target.value)}/>
+                <FormInputGroup text="Loan Amount $" placeholder="" value={loanAmount} onInput={(event) => setLoanAmount(event.target.value)}/>
+                <FormInputGroup text="Interest Rate %" placeholder="" value={interestRate} onInput={(event) => setInterestRate(event.target.value)}/>
+                <FormInputGroup text="Loan Duration in Years" placeholder="" value={loanDuration} onInput={(event) => setLoanDuration(event.target.value)}/>
                 
                 <h4 className="alert alert-info fw-bold">
                     Monthly Payment: ${monthlyPayment.toFixed(2)}
