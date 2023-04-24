@@ -1,6 +1,7 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, defaults } from 'chart.js';
 
+
 import { AppProvider } from "../context/AppContext";
 import  { useState, useEffect } from 'react'
 import { calculateValue, getSessionKey } from '../utils/utils.js'

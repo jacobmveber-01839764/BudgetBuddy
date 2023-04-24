@@ -1,11 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './css/ViewBudget.css'
 import logo from './widget_logos/current_balance_logo.png';
 
 export default function FetchAPI() {
 	const [whole, setWhole] = useState('');
-	const [decimal, setDecimal] = useState('')
+	const [decimal, setDecimal] = useState('');
 	const [balance, setBalance] = useState('');
+	const [error, setError] = useState(false); 
 
 	function getSessionKey() {
 		var cookies = document.cookie.split(';');
@@ -41,19 +42,36 @@ export default function FetchAPI() {
             setBalance(name);
         }
 	useEffect(() => {
-		
         fetchBalance();
 	}, [])
-		
+	
+	const handleBlur = (event) => {
+
+		const handleBlur = (event) => {
+			if (event.target.validity.patternMismatch) {
+			  setError(true);                         
+			}
+		  };
+	  };
+
 	function handleSubmit(event) {
 		// const form = document.getElementById('form');
 		event.preventDefault();
 		// const payload = new FormData(form);
-		const balance = whole.split('.')
-		if (balance.length < 2)
-			balance.push(0);
-		else if (balance[1].length < 1)
-			balance.push(0);
+		console.log(whole);
+		const balance = whole.split('.') 
+		console.log(balance)
+		if (balance.length < 2) {
+			balance.push('0');
+		}
+		else if (balance[1].length > 2) {
+			console.log("TEST SUCCESS")
+		}
+		else if (balance[1].length < 1) {
+			balance.push('0');
+		}
+		
+			
 		// console.log([...payload])
 		// const formData = new FormData();
         // formData.append('whole', whole);
@@ -86,6 +104,7 @@ export default function FetchAPI() {
 				fetchBalance();
 		});
 	  }
+	  
 	return (
 		<>
 			{/* <img src={logo}></img> 
@@ -98,8 +117,13 @@ export default function FetchAPI() {
 					 className="form-control" 
 					 placeholder="Enter Balance" 
 					 value={whole} 
+					 maxLength="10"
+					 pattern="^[+]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?"
+					 title="Please enter the balance with two decimal places for cents. Please enter a balance 999999999.99"
 					onChange={(event) => setWhole(event.target.value)}
 					 required />
+					 
+    
       			<button type="submit">Submit</button>
     		</form>
 		</>
