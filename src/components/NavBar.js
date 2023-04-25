@@ -22,7 +22,7 @@ export default function NavBar() {
     }, []);
 
     return (
-        <Toolbar position="sticky" className="navbar bar py-3 px-4">
+        <Toolbar position="sticky" className="navbar mb-2 py-3 px-4">
             <Link href="/" className="nav-brand" underline="none">
                 <img src={logo} className="logo w-100"/>
                 <Typography 

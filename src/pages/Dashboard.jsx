@@ -19,36 +19,36 @@ export default function Dashboard() {
 
   	return (
 		<AppProvider>
-			<div className='container-fluid'>
+			<div>
 				<div className='row align-items-stretch'>
-					<div className='col-sm'>
+					<div className='col mb-3'>
 						<FetchAPI />
 					</div>
-					<div className='col-sm widget d-flex align-items-center justify-content-between'>
+					<div className='col mb-3'>
 						<RemainingBudget />
 					</div>
-					<div className='col-sm'>
-						{/* <ExpenseTotal /> */}
+					<div className='col mb-3'>
+						<ExpenseTotal />
 					</div>
 				</div>
 
-				<div className='row mt-3'>
-					<div className='col'>
+				<div className='row'>
+					<div className='col-12 col-xl-4 mb-3'>
 						<AddExpenseForm/>
 					</div>
-					<div className='col'>
-						<ExpenseList />
+					<div className='col-12 col-xl-8 mb-3'>
+						<LoanCalculator/>
 					</div>
 				</div>
 
-				<div className='row mt-3'>
-					<div className='col-12 col-md-12 col-lg-4'>
-						<LoanCalculator/>
+				<div className='row'>
+					<div className='col-12 col-md-12 col-lg-4 mb-3'>
+						<ExpenseList />
 					</div>
-					<div className='col-12 col-lg-4'>
+					<div className='col-12 col-lg-4 mb-3'>
 						<CategorizedExpenses/>
 					</div>
-					<div className='col-12 col-lg-4'>
+					<div className='col-12 col-lg-4 mb-3'>
 						<CategorizedIncome/>
 					</div>
 				</div>

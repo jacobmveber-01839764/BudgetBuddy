@@ -24,7 +24,8 @@ const ExpenseTotal = () => {
 
 	return (
 		<div className='widget p-4'>
-			<img src={logo} className='expenseTotalIcon'></img>
+			{//<img src={logo} className='expenseTotalIcon'></img>
+			}
 			<span className='widgetText'>This Month's Expenses: ${expense}</span>
 		</div>
 	);

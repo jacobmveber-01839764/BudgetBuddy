@@ -126,8 +126,9 @@ const AddExpenseForm = (props) => {
 	return (
 		<div className='widget'>
 			<h4>Add Transaction</h4>
+			<div style={{height: "85%"}} className='d-flex flex-column justify-content-between'>
 				<div className='row'>
-					<div className='col-md col-lg-4'>
+					<div className='col'>
 						<label htmlFor='cost'>Cost</label>
 						<input
 							required='required'
@@ -140,7 +141,7 @@ const AddExpenseForm = (props) => {
 							onChange={(event) => setCost(event.target.value)}
 						/>
 					</div>
-					<div className='col-md col-lg-4'>
+					<div className='col'>
 						<label htmlFor='category-select'>Category</label>
 						<select className="form-select" id='category-select'
 							value={category} 
@@ -154,9 +155,9 @@ const AddExpenseForm = (props) => {
 						</select>
 					</div>
 				</div>
-
-				<div className='row mt-2'>
-					<div className='col'>
+				
+				<div className='row'>
+					<div className='btn-group mt-2' role="group">
 						<button className='btn btn-outline-success m-right' value={1} onClick={quickSet}>
 							$1
 						</button>
@@ -178,20 +179,20 @@ const AddExpenseForm = (props) => {
 					</div>
 				</div>
 
-				<div className='row mt-2'>
+				<div className='row'>
 					<div className='col-sm'>
-						<button className='btn btn-dark m-right' onClick={toggleTransactionType}>
+						<button className='btn btn-dark m-right  mt-2' onClick={toggleTransactionType}>
 							{transactionType.toUpperCase()}
 						</button>
-						<button type='submit' onClick={onSubmit} id="add-transaction-button" className='btn btn-primary m-right'>
-							Add {transactionType.substring(0, 1).toUpperCase() + transactionType.substring(1)}
+						<button type='submit' onClick={onSubmit} id="add-transaction-button" className='btn btn-primary m-right mt-2'>
+							Add Transaction
 						</button>
-						<button className='btn btn-primary' onClick={handleAddCategory}>
+						<button className='btn btn-primary  mt-2' onClick={handleAddCategory}>
 							Add New Category
 						</button>
 					</div>
 				</div>
-
+			</div>
 		</div>
 	);
 };
