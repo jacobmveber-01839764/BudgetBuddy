@@ -29,22 +29,16 @@ const LoanCalculator = () => {
             <h4 className="mb-0">Loan Calculator</h4>
 
             <form onSubmit={(event) => event.preventDefault()}>
-                <div className="row align-items-center">
-                    <div className="col mb-3">
-                        <FormInputGroup text="Loan Amount $" placeholder="Enter the value of the loan" value={loanAmount} onInput={(event) => setLoanAmount(event.target.value)}/>
-                        <FormInputGroup text="Interest Rate %" placeholder="Enter interest rate of the loan" value={interestRate} onInput={(event) => setInterestRate(event.target.value)}/>
-                        <FormInputGroup text="Loan Duration in Years" placeholder="Enter the duration of the loan in years" value={loanDuration} onInput={(event) => setLoanDuration(event.target.value)}/>
-                    </div>
-                    <div className="col">
-                        <h5 className="alert alert-info fw-bold mt-3">
-                            Monthly Payment: ${monthlyPayment.toFixed(2)}
-                            <h6 className="mt-4">Principal Paid: ${loanAmount}</h6>
-                            <h6>Interest Paid: ${interestPaid.toFixed(2)}</h6>
-                        </h5>
-                    </div>
-                </div>
+                <FormInputGroup text="Loan Amount $" placeholder="" value={loanAmount} onInput={(event) => setLoanAmount(event.target.value)}/>
+                <FormInputGroup text="Interest Rate %" placeholder="" value={interestRate} onInput={(event) => setInterestRate(event.target.value)}/>
+                <FormInputGroup text="Loan Duration in Years" placeholder="" value={loanDuration} onInput={(event) => setLoanDuration(event.target.value)}/>
 
-                <button type="submit" className="btn btn-primary btn-lg w-100 center" onClick={calculateMonthlyPayment}>Calculate</button>
+                <h4 className="alert alert-info fw-bold">
+                    Monthly Payment: ${monthlyPayment.toFixed(2)}
+                    <h5 className="mt-4">Principal Paid: ${loanAmount}</h5>
+                    <h5>Interest Paid: ${interestPaid.toFixed(2)}</h5>
+                </h4>
+                <button type="submit" className="btn btn-primary btn-lg w-100 mt-3 center" onClick={calculateMonthlyPayment}>Calculate</button>
             </form>
         </div>
     )

@@ -110,7 +110,9 @@ export default function FetchAPI() {
 			{/* <img src={logo}></img> 
 			<span>Current Balance: ${data}</span> */}
 			{/* <button onClick={apiGet()}> TEST</button> */}
-			 <h1>{balance}</h1> 
+			<h5 class="text">Current Balance</h5>
+			<img src={logo} class="imagee"></img>
+			 <h1 class="displayy">${balance}</h1> 
 			 <form id="form" onSubmit={handleSubmit}>
       			<input 
 				type = "text"

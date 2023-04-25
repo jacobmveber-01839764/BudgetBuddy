@@ -1,7 +1,14 @@
-
-/* MAKE SURE TO BE SPECIFIC WITH STYLING CUZ THIS CHANGED DIFFERENT SPANS
-span {
-    float: right;
-    margin-right: 50px;
+.imagee {
+    margin-top: 50px;
+    margin-left: 20px;
+    width: 50px;
 }
-*/
+
+.displayy {
+    margin-top: 50px;
+}
+
+.text {
+    position: fixed;
+    top: 10px;
+}

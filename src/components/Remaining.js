@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import './css/ViewBudget.css'
-import logo from './widget_logos/current_balance_logo.png';
+import './css/Remaining.css'
+import logo from './widget_logos/budget_logo.png';
 
 export default function Remaining() {
 	const [budget, setBudget] = useState('');
@@ -107,7 +107,10 @@ export default function Remaining() {
 			{/* <img src={logo}></img> 
 			<span>Current Balance: ${data}</span> */}
 			{/* <button onClick={apiGet()}> TEST</button> */}
-			 <h1>{budget}</h1> 
+			 <h5 class="text">Budget Remaining</h5>
+			 
+			 
+			 <img src={logo} class="image"></img><h1 class="display">${budget}</h1> 
 			 <form id="form" onSubmit={handleSubmit}>
       			<input 
 				type = "text"
