@@ -9,13 +9,13 @@ import Main from './Main.js'
 
 function App() {
   return (
-    // <React.StrictMode> COMMENTED OUT BY CHRIS TO FIX MULTIPLE TABLE DISPLAYED IN RECENT TRANSACTION
+    <React.StrictMode>
       <div className="app">
         <ThemeProvider theme={theme}>
           <Main/>
         </ThemeProvider>
       </div>
-    // </React.StrictMode> praying I didn't break the project tbh
+    </React.StrictMode>
   );
 }
 
