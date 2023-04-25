@@ -55,14 +55,33 @@ export default function Remaining() {
 			console.error(error);
 		  }
 	  }
+	  async function getIncome() {
+		try {
+			const response = await fetch('https://api.bb.gabefarrell.com/w/income/month', {
+			  method: 'GET',
+			  headers: {
+				'x-session-key': getSessionKey(),
+			  },
+			});
+			const data = await response.json();
+			const whole = data.whole;
+			const decimal = data.decimal;
+			const total_expenses = whole + '.' + decimal;
+			console.log(total_expenses + "<- Income By Month"); 
+			return Number(total_expenses);
+		  } catch (error) {
+			console.error(error);
+		  }
+	  }
 	async function fetchBudget() {
             const name = await getBudget();
 			const expenses = await getMonthlyExpenses();
-			const budget_remaining = (name - expenses).toFixed(2);
+			
+			const income = await getIncome();
+			const budget_remaining = (name - expenses + income).toFixed(2);
             setBudget(budget_remaining);
         }
 	useEffect(() => {
-		
         fetchBudget();
 	}, [])
 		

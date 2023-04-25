@@ -102,7 +102,6 @@ const ExpenseList = () => {
 				var row = `<tr>
 								<td>${data1[i]}</td>
 								<td>$${data2[i]}</td>
-								
 						  </tr>`
 				table.innerHTML += row
 	
@@ -110,14 +109,12 @@ const ExpenseList = () => {
 			}
 		}
 		
-		buildTable(category, transaction, time);
+	buildTable(category, transaction, time);
 
 	  async function fetchTransactions() {
 		const categories = await getTransactionsCategory();
 		const transaction_balance = await getTransactionsBalance();
 		const date = await getDate();
-		
-			
 
 		setCategories(categories);
 		setTransactions(transaction_balance);
@@ -141,7 +138,7 @@ const ExpenseList = () => {
 			<h4>Recent Transactions</h4>
 			{/* <h4>{category}</h4>
 			<h4>{transaction}</h4>	 */}
-			<table><tbody id="myTable">
+			<table class="table table-striped"><tbody id="myTable">
         
     		</tbody></table>
 			
