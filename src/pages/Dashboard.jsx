@@ -3,7 +3,7 @@ import  { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { AppProvider } from '../context/AppContext';
-import FetchAPI from '../components/budget';
+import FetchAPI from '../components/Budget';
 import ExpenseTotal from '../components/ExpenseTotal';
 import ExpenseList from '../components/ExpenseList';
 import AddExpenseForm from '../components/AddExpenseForm';
@@ -27,8 +27,8 @@ export default function Dashboard() {
 					<div className='col-sm widget d-flex align-items-center justify-content-between'>
 						<RemainingBudget />
 					</div>
-					<div className='col-sm'>
-						{/* <ExpenseTotal /> */}
+					<div className='col-sm widget d-flex align-items-center justify-content-between'>
+						<ExpenseTotal />
 					</div>
 				</div>
 

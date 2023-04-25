@@ -1,3 +1,14 @@
-img {
-    width: 50px;
+.image {
+    margin-top: 50px;
+    margin-left: 20px;
+    width: 70px;
+}
+
+.display {
+    margin-top: 50px;
+}
+
+.text {
+    position: fixed;
+    top: 10px;
 }
