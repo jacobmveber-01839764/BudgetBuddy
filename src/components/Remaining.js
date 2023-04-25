@@ -103,7 +103,7 @@ export default function Remaining() {
 		});
 	  }
 	return (
-		<>
+		<div className='widget d-flex align-items-center justify-content-between'>
 			{/* <img src={logo}></img> 
 			<span>Current Balance: ${data}</span> */}
 			{/* <button onClick={apiGet()}> TEST</button> */}
@@ -121,7 +121,7 @@ export default function Remaining() {
 					 required />
       			<button type="submit">Submit</button>
     		</form>
-		</>
+		</div>
 		
 	);
 };
