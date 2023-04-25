@@ -35,6 +35,22 @@ export async function getName() {
   }
 }
 
+export async function getEmail() {
+  try {
+    const response = await fetch('https://api.bb.gabefarrell.com/userinfo', {
+      method: 'GET',
+      headers: {
+        'x-session-key': getSessionKey(),
+      },
+    });
+    const data = await response.json();
+    const email = data.email;
+    return email;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export function handleLogout() {
   document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
   window.location.href='/welcome';

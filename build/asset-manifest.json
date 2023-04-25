@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a647f1f7.css",
+    "main.js": "/static/js/main.205e7457.js",
+    "static/js/496.f12dc038.chunk.js": "/static/js/496.f12dc038.chunk.js",
+    "static/media/budgethero1.png": "/static/media/budgethero1.ef97d4454cc11d5d60d0.png",
+    "static/media/umass_lowell.jpeg": "/static/media/umass_lowell.adff7eaefc5d0aa6343d.jpeg",
+    "static/media/expenses_logo.png": "/static/media/expenses_logo.f24db1454b6c041fade7.png",
+    "static/media/money2.png": "/static/media/money2.4e0a9f8da499f5fe72a1.png",
+    "static/media/money1.png": "/static/media/money1.900d2433a99d49f20ade.png",
+    "static/media/river_hawk.png": "/static/media/river_hawk.175d1b2ee8b8ae31ab50.png",
+    "static/media/money3.png": "/static/media/money3.8859e70f73221654d7ed.png",
+    "static/media/BudgetBuddyLogo.png": "/static/media/BudgetBuddyLogo.8e4cd296c3a372956bf4.png",
+    "index.html": "/index.html",
+    "main.a647f1f7.css.map": "/static/css/main.a647f1f7.css.map",
+    "main.205e7457.js.map": "/static/js/main.205e7457.js.map",
+    "496.f12dc038.chunk.js.map": "/static/js/496.f12dc038.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a647f1f7.css",
+    "static/js/main.205e7457.js"
+  ]
+}
