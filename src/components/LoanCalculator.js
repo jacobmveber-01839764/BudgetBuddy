@@ -33,7 +33,7 @@ const LoanCalculator = () => {
                 <FormInputGroup text="Interest Rate %" placeholder="" value={interestRate} onInput={(event) => setInterestRate(event.target.value)}/>
                 <FormInputGroup text="Loan Duration in Years" placeholder="" value={loanDuration} onInput={(event) => setLoanDuration(event.target.value)}/>
 
-                <h4 className="alert alert-info fw-bold">
+                <h4 className="mt-4 alert alert-info fw-bold">
                     Monthly Payment: ${monthlyPayment.toFixed(2)}
                     <h5 className="mt-4">Principal Paid: ${loanAmount}</h5>
                     <h5>Interest Paid: ${interestPaid.toFixed(2)}</h5>
