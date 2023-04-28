@@ -212,40 +212,40 @@ const ExpenseList = () => {
 			{/* <h4>{category}</h4>
 			<h4>{transaction}</h4>	 */}
 			<table class="table table-striped"><tbody>
-				<tr >
-					<td style={{color: type[0]==='expenses' ? 'red' : 'green' }}>{category[0]}</td>
-					<td style={{color: type[0]==='expenses' ? 'red' : 'green' }}>{transaction[0]}</td>
-					<td style={{color: type[0]==='expenses' ? 'red' : 'green' }}>{type[0]}</td>
+				<tr>
+					<td>{category[0]}</td>
+					<td>{transaction[0]}</td>
+					<td>{type[0]}</td>
 				</tr>
 				<tr>
-					<td style={{color: type[1]==='expenses' ? 'red' : 'green' }}>{category[1]}</td>
-					<td style={{color: type[1]==='expenses' ? 'red' : 'green' }}>{transaction[1]}</td>
-					<td style={{color: type[1]==='expenses' ? 'red' : 'green' }}>{type[1]}</td>
+					<td>{category[1]}</td>
+					<td>{transaction[1]}</td>
+					<td>{type[1]}</td>
 				</tr>
 				<tr>
-					<td style={{color: type[2]==='expenses' ? 'red' : 'green' }}>{category[2]}</td>
-					<td style={{color: type[2]==='expenses' ? 'red' : 'green' }}>{transaction[2]}</td>
-					<td style={{color: type[2]==='expenses' ? 'red' : 'green' }}>{type[2]}</td>
+					<td>{category[2]}</td>
+					<td>{transaction[2]}</td>
+					<td>{type[2]}</td>
 				</tr>
 				<tr>
-					<td style={{color: type[3]==='expenses' ? 'red' : 'green' }}>{category[3]}</td>
-					<td style={{color: type[3]==='expenses' ? 'red' : 'green' }}>{transaction[3]}</td>
-					<td style={{color: type[3]==='expenses' ? 'red' : 'green' }}>{type[3]}</td>
+					<td>{category[3]}</td>
+					<td>{transaction[3]}</td>
+					<td>{type[3]}</td>
 				</tr>
 				<tr>
-					<td style={{color: type[4]==='expenses' ? 'red' : 'green' }}>{category[4]}</td>
-					<td style={{color: type[4]==='expenses' ? 'red' : 'green' }}>{transaction[4]}</td>
-					<td style={{color: type[4]==='expenses' ? 'red' : 'green' }}>{type[4]}</td>
+					<td>{category[4]}</td>
+					<td>{transaction[4]}</td>
+					<td>{type[4]}</td>
 				</tr>
 				<tr>
-					<td style={{color: type[5]==='expenses' ? 'red' : 'green' }}>{category[5]}</td>
-					<td style={{color: type[5]==='expenses' ? 'red' : 'green' }}>{transaction[5]}</td>
-					<td style={{color: type[5]==='expenses' ? 'red' : 'green' }}>{type[5]}</td>
+					<td>{category[5]}</td>
+					<td>{transaction[5]}</td>
+					<td>{type[5]}</td>
 				</tr>
 				<tr>
-					<td style={{color: type[6]==='expenses' ? 'red' : 'green' }}>{category[6]}</td>
-					<td style={{color: type[6]==='expenses' ? 'red' : 'green' }}>{transaction[6]}</td>
-					<td style={{color: type[6]==='expenses' ? 'red' : 'green' }}>{type[6]}</td>
+					<td>{category[6]}</td>
+					<td>{transaction[6]}</td>
+					<td>{type[6]}</td>
 				</tr>
     		</tbody></table>
 			
