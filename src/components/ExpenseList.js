@@ -9,6 +9,8 @@ const ExpenseList = () => {
 	const [transaction, setTransactions] = useState('');
 	const [category, setCategories] = useState('');
 	const [time, setTime] = useState('');
+	const [data, setData] = useState([]);
+	const [type, setType] = useState('');
 
 	function getSessionKey() {
 		var cookies = document.cookie.split(';');
@@ -21,7 +23,74 @@ const ExpenseList = () => {
 		return null;
 	  }
 
-	
+	  async function fetchData() {
+		
+		  fetch('https://api.bb.gabefarrell.com/w/transactions/recent', {
+			method: 'GET',
+			headers: {
+			  'x-session-key': getSessionKey(),
+			},
+		  })
+		  .then((response) => response.json())
+		  .then((actualData) => {
+			console.log(actualData);
+			setData(actualData);
+			console.log(data);
+		  })
+		  .catch((err) => {
+			console.log(err.message);
+		  });
+	  }
+
+
+	  async function getTransactionsBalance() {
+		try {
+		  const response = await fetch('https://api.bb.gabefarrell.com/w/transactions/recent', {
+			method: 'GET',
+			headers: {
+			  'x-session-key': getSessionKey(),
+			},
+		  });
+		  const data = await response.json();
+		  let whole = data.transactions.map((item)=>item.amount.whole);
+		  let decimal = data.transactions.map((item)=>item.amount.decimal);
+		  let balance = [];
+		  for (let i = 0; i < whole.length; i++) {
+				let expense_balance = whole[i] + '.' + decimal[i];
+				balance.push(expense_balance);
+		  }
+
+		  //console.log(whole + decimal +  "<- total recent transacations");
+		  //console.log(whole, decimal, balance);
+		  //const transactions_balance = whole + '.' + decimal;
+		   //console.log(whole, decimal, category); 
+		  return balance;
+		} catch (error) {
+		  console.error(error);
+		}
+	  }
+
+	  async function getType() {
+		try {
+		  const response = await fetch('https://api.bb.gabefarrell.com/w/transactions/recent', {
+			method: 'GET',
+			headers: {
+			  'x-session-key': getSessionKey(),
+			},
+		  });
+		  const data = await response.json();
+		  const type = data.transactions.map((item)=>item.type);
+		  
+
+		  //console.log(whole + decimal +  "<- total recent transacations");
+		  //console.log(whole, decimal, balance);
+		  //const transactions_balance = whole + '.' + decimal;
+		   //console.log(whole, decimal, category); 
+		  return type;
+		} catch (error) {
+		  console.error(error);
+		}
+	  }
 
 	  async function getTransactionsBalance() {
 		try {
@@ -84,7 +153,7 @@ const ExpenseList = () => {
 			date = new Date(timestamp[i]);
 			month = date.getMonth();
 			day = date.getDay();
-			console.log(month, day);
+			//console.log(month, day);
 			dateFormat.push(month + '/' + day);
 		  }
 		 //let dateFormat = new Date(timestamp[0]);
@@ -115,14 +184,18 @@ const ExpenseList = () => {
 		const categories = await getTransactionsCategory();
 		const transaction_balance = await getTransactionsBalance();
 		const date = await getDate();
+		const type = await getType();
 
 		setCategories(categories);
+		//console.log(category + "CATEGORIES");
 		setTransactions(transaction_balance);
 		setTime(date);
+		setType(type);
 	}
 	
 	useEffect(() => {
 		fetchTransactions(); //b36efa01-7824-4f61-a274-63131b58d8fe		
+		//fetchData();
 	}, [])
 
 
@@ -138,8 +211,42 @@ const ExpenseList = () => {
 			<h4>Recent Transactions</h4>
 			{/* <h4>{category}</h4>
 			<h4>{transaction}</h4>	 */}
-			<table class="table table-striped"><tbody id="myTable">
-        
+			<table class="table table-striped"><tbody>
+				<tr>
+					<td>{category[0]}</td>
+					<td>{transaction[0]}</td>
+					<td>{type[0]}</td>
+				</tr>
+				<tr>
+					<td>{category[1]}</td>
+					<td>{transaction[1]}</td>
+					<td>{type[1]}</td>
+				</tr>
+				<tr>
+					<td>{category[2]}</td>
+					<td>{transaction[2]}</td>
+					<td>{type[2]}</td>
+				</tr>
+				<tr>
+					<td>{category[3]}</td>
+					<td>{transaction[3]}</td>
+					<td>{type[3]}</td>
+				</tr>
+				<tr>
+					<td>{category[4]}</td>
+					<td>{transaction[4]}</td>
+					<td>{type[4]}</td>
+				</tr>
+				<tr>
+					<td>{category[5]}</td>
+					<td>{transaction[5]}</td>
+					<td>{type[5]}</td>
+				</tr>
+				<tr>
+					<td>{category[6]}</td>
+					<td>{transaction[6]}</td>
+					<td>{type[6]}</td>
+				</tr>
     		</tbody></table>
 			
 		</div>
