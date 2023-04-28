@@ -129,16 +129,6 @@ const Settings = () => {
         })
     })()
 
-    // toggle between light mode and dark mode
-    /*const toggleDarkMode = () => {
-        if (document.documentElement.getAttribute('data-bs-theme') === 'dark') {
-            document.documentElement.setAttribute('data-bs-theme','light')
-        }
-        else {
-            document.documentElement.setAttribute('data-bs-theme','dark')
-        }
-    }*/
-
     return (
     <>
         <div className="container overflow-auto">
@@ -161,18 +151,18 @@ const Settings = () => {
                 <div className="row mb-3">
                     <label htmlFor="newFirstName" className="col-2 col-form-label">New First Name</label>
                     <div className="col-4">
-                        <input type="text" className="form-control" id="newFirstName" placeholder="Please enter a new first name" value={firstName} onChange={(event) => setFirstName(event.target.value)} required/>
+                        <input type="text" className="form-control" id="newFirstName" placeholder="Please enter a new first name" pattern="\S(.*\S)?" value={firstName} onChange={(event) => setFirstName(event.target.value)} required/>
                         <div className="invalid-feedback">
-                            Please enter a new first name
+                            Please enter a valid new first name
                         </div>
                     </div>
                 </div>
                 <div className="row mb-3">
                     <label htmlFor="newLastName" className="col-2 col-form-label">New Last Name</label>
                     <div className="col-4">
-                        <input type="text" className="form-control" id="newLastName" placeholder="Please enter a new last name" value={lastName} onChange={(event) => setLastName(event.target.value)} required />
+                        <input type="text" className="form-control" id="newLastName" placeholder="Please enter a new last name" pattern="\S(.*\S)?" value={lastName} onChange={(event) => setLastName(event.target.value)} required/>
                         <div className="invalid-feedback">
-                            Please enter a new last name
+                            Please enter a valid new last name
                         </div>
                     </div>
                 </div>
@@ -187,7 +177,7 @@ const Settings = () => {
                 <div className="row mb-3">
                     <label htmlFor="currentPassword" className="col-2 col-form-label">Current Password</label>
                     <div className="col-4">
-                        <input type="password" className="form-control" id="currentPassword" placeholder="Please enter your current password" minLength="8" value={currentPassword} onChange={(event) => setCurrentPassword(event.target.value)} required />
+                        <input type="password" className="form-control" id="currentPassword" placeholder="Please enter your current password" pattern="\S(.*\S)?" minLength="8" value={currentPassword} onChange={(event) => setCurrentPassword(event.target.value)} required/>
                         <div className="invalid-feedback">
                             Please enter your current password
                         </div>
@@ -196,11 +186,13 @@ const Settings = () => {
                 <div className="row mb-3">
                     <label htmlFor="newPassword" className="col-2 col-form-label">New Password</label>
                     <div className="col-4">
-                        <input type="password" className="form-control" id="newPassword" placeholder="Please enter a new password" minLength="8" value={newPassword} onChange={(event) => setNewPassword(event.target.value)} required />
+                        <input type="password" className="form-control" id="newPassword" placeholder="Please enter a new password" pattern="\S(.*\S)?" minLength="8" value={newPassword} onChange={(event) => setNewPassword(event.target.value)} required/>
                         <div className="invalid-feedback">
-                            Please enter a new password
+                            Please enter a valid new password
                             <br/>
                             Your new password must be at least 8 characters long
+                            <br/>
+                            It cannot have whitespace at the start or end of it
                         </div>
                     </div>
                 </div>
@@ -210,13 +202,6 @@ const Settings = () => {
                 </div>
             </form>
 
-            {/*<h4 className="mb-4">Dark Mode</h4>
-
-            <div className="form-check form-switch mb-5">
-                <input className="form-check-input" type="checkbox" id="darkModeCheckbox" onClick={toggleDarkMode}/>
-                <label className="form-check-label" htmlFor="darkModeCheckbox">Enable Dark Mode</label>
-            </div>*/}
-
             <h4 className="mb-4">Account Settings</h4>
 
             <h5 className="mb-4">Delete Your Account</h5>
@@ -224,7 +209,7 @@ const Settings = () => {
                 <div className="row mb-3">
                     <label htmlFor="deleteAccount" className="col-2 col-form-label">Current Password</label>
                     <div className="col-4">
-                        <input type="password" className="form-control" id="deleteAccount" placeholder="Please enter your current password" minLength="8" value={deleteAccount} onChange={(event) => setDeleteAccount(event.target.value)} required />
+                        <input type="password" className="form-control" id="deleteAccount" placeholder="Please enter your current password" pattern="\S(.*\S)?" minLength="8" value={deleteAccount} onChange={(event) => setDeleteAccount(event.target.value)} required/>
                         <div className="invalid-feedback">
                             Please enter your current password in order to delete your account
                         </div>
