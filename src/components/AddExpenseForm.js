@@ -123,76 +123,98 @@ const AddExpenseForm = (props) => {
 		setCost(event.target.value)
 	}
 
+	(() => {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+    
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            form.classList.add('was-validated')
+        }, false)
+        })
+    })()
+
 	return (
 		<div className='widget'>
 			<h4>Add Transaction</h4>
-			<div style={{height: "85%"}} className='d-flex flex-column justify-content-between'>
-				<div className='row'>
-					<div className='col'>
-						<label htmlFor='cost'>Cost</label>
-						<input
-							required='required'
-							type='number'
-							className='form-control'
-							id='cost'
-							min="0.00"
-							step=".01"
-							value={cost}
-							onChange={(event) => setCost(event.target.value)}
-						/>
+			<form className="needs-validation"  onSubmit={onSubmit} noValidate>
+				<div style={{height: "85%"}} className='d-flex flex-column justify-content-between'>
+					<div className='row'>
+						<div className='col'>
+							<label htmlFor='cost'>Cost</label>
+							<input
+								required='required'
+								type='number'
+								className='form-control'
+								id='cost'
+								min="0.00"
+								step=".01"
+								value={cost}
+								onChange={(event) => setCost(event.target.value)}
+							/>
+							<div className="invalid-feedback">
+								Please enter a valid amount
+                            </div>
+						</div>
+						<div className='col'>
+							<label htmlFor='category-select'>Category</label>
+							<select className="form-select" id='category-select'
+								value={category} 
+								onChange={(event) => setCategory(event.target.value)}>
+									
+								{categoryList.map((category) => (
+									<option key={category} value={category}>
+										{category}
+									</option>
+								))}
+							</select>
+						</div>
 					</div>
-					<div className='col'>
-						<label htmlFor='category-select'>Category</label>
-						<select className="form-select" id='category-select'
-							value={category} 
-							onChange={(event) => setCategory(event.target.value)}>
-								
-							{categoryList.map((category) => (
-								<option key={category} value={category}>
-									{category}
-								</option>
-							))}
-						</select>
+					
+					<div className='row'>
+						<div className='btn-group mt-2' role="group">
+							<button className='btn btn-outline-success m-right' value={1} onClick={quickSet}>
+								$1
+							</button>
+							<button className='btn btn-outline-success m-right' value={5} onClick={quickSet}>
+								$5
+							</button>
+							<button className='btn btn-outline-success m-right' value={10} onClick={quickSet}>
+								$10
+							</button>
+							<button className='btn btn-outline-success m-right' value={15} onClick={quickSet}>
+								$15
+							</button>
+							<button className='btn btn-outline-success m-right' value={20} onClick={quickSet}>
+								$20
+							</button>
+							<button className='btn btn-outline-success m-right' value={50} onClick={quickSet}>
+								$50
+							</button>
+						</div>
 					</div>
-				</div>
-				
-				<div className='row'>
-					<div className='btn-group mt-2' role="group">
-						<button className='btn btn-outline-success m-right' value={1} onClick={quickSet}>
-							$1
-						</button>
-						<button className='btn btn-outline-success m-right' value={5} onClick={quickSet}>
-							$5
-						</button>
-						<button className='btn btn-outline-success m-right' value={10} onClick={quickSet}>
-							$10
-						</button>
-						<button className='btn btn-outline-success m-right' value={15} onClick={quickSet}>
-							$15
-						</button>
-						<button className='btn btn-outline-success m-right' value={20} onClick={quickSet}>
-							$20
-						</button>
-						<button className='btn btn-outline-success m-right' value={50} onClick={quickSet}>
-							$50
-						</button>
-					</div>
-				</div>
 
-				<div className='row'>
-					<div className='col-sm'>
-						<button className='btn btn-dark m-right  mt-2' onClick={toggleTransactionType}>
-							{transactionType.toUpperCase()}
-						</button>
-						<button type='submit' onClick={onSubmit} id="add-transaction-button" className='btn btn-primary m-right mt-2'>
-							Add Transaction
-						</button>
-						<button className='btn btn-primary  mt-2' onClick={handleAddCategory}>
-							Add New Category
-						</button>
+					<div className='row'>
+						<div className='col-sm'>
+							<button className='btn btn-dark m-right mt-2' onClick={toggleTransactionType}>
+								{transactionType.toUpperCase()}
+							</button>
+							<button type='submit' id="add-transaction-button" className='btn btn-primary m-right mt-2'>
+								Add Transaction
+							</button>
+							<button className='btn btn-primary  mt-2' onClick={handleAddCategory}>
+								Add New Category
+							</button>
+						</div>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 	);
 };
