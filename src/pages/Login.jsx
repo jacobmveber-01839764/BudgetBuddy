@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import './Login.css'
 
@@ -6,6 +6,12 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorText, setErrorText] = useState(null);
+    const [checked, setChecked] = useState(false);
+
+    // toggles state of checked for checkbox remember me feature
+    const handleCheckbox = () => {
+        setChecked(!checked);
+    }
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -25,9 +31,18 @@ export default function Login() {
                 console.log(data.error);
                 setErrorText(data.error);
             } else {
-                const session = data.session;
-                document.cookie = `session=${session}; path=/;`
-                window.location.href = '/dashboard';
+                if(checked) {
+                    // the user chose Remember Me, cookie will expire in 7 days
+                    const session = data.session;
+                    const expires = (new Date(Date.now()+ 604800*1000)).toUTCString();
+                    document.cookie = `session=${session}; expires=${expires}; path=/;`
+                    window.location.href = '/dashboard';
+                }
+                else {
+                    const session = data.session;
+                    document.cookie = `session=${session}; path=/;`
+                    window.location.href = '/dashboard';
+                }
             }
             console.log(data); // Log the response from the server
         })
@@ -69,8 +84,9 @@ export default function Login() {
                         type="checkbox"
                         className="custom-control-input"
                         id="customCheck1"
+                        onChange={handleCheckbox}
                         />
-                         <label id="remember-me" className="custom-control-label" htmlFor="customCheck1">
+                        <label id="remember-me" className="custom-control-label" htmlFor="customCheck1">
                         Remember me
                         </label>
                     </div>
