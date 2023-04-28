@@ -47,10 +47,27 @@ export default function SignUp() {
         });
     }
 
+    (() => {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+    
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            form.classList.add('was-validated')
+        }, false)
+        })
+    })()
+
     return (
         <div className="auth-wrapper">
             <div className="auth-inner">
-                <form id="form" onSubmit={handleSubmit}>
+                <form className="needs-validation" id="form" onSubmit={handleSubmit} noValidate>
                     <h3>Sign Up</h3>
                     <div className="mb-3">
                     <label>First name</label>
@@ -58,10 +75,14 @@ export default function SignUp() {
                         type="text"
                         className="form-control"
                         placeholder='First Name'
+                        pattern="\S(.*\S)?"
                         value={firstName}
                         onChange={(event) => setFirstName(event.target.value)}
                         required
                     />
+                    <div className='invalid-feedback'>
+                        Please enter a valid first name
+                    </div>
                     </div>
                     <div className="mb-3">
                     <label>Last name</label>
@@ -69,10 +90,14 @@ export default function SignUp() {
                         type="text"
                         className="form-control"
                         placeholder="Last name"
+                        pattern="\S(.*\S)?"
                         value={lastName}
                         onChange={(event) => setLastName(event.target.value)}
                         required
                     />
+                    <div className='invalid-feedback'>
+                        Please enter a valid last name
+                    </div>
                     </div>
                     <div className="mb-3">
                     <label>Email address</label>
@@ -84,6 +109,9 @@ export default function SignUp() {
                         onChange={(event) => setEmail(event.target.value)}
                         required
                     />
+                    <div className='invalid-feedback'>
+                        Please enter a valid email address
+                    </div>
                     </div>
                     <div className="mb-3">
                     <label>Password</label>
@@ -91,10 +119,19 @@ export default function SignUp() {
                         type="password"
                         className="form-control"
                         placeholder="Enter password"
+                        pattern="\S(.*\S)?"
+                        minLength="8"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                         required
                     />
+                    <div className='invalid-feedback'>
+                        Please enter a valid password
+                        <br/>
+                        Your new password must be at least 8 characters long
+                        <br/>
+                        It cannot have whitespace at the start or end of it
+                    </div>
                     </div>
                     <div className="d-grid">
                     <button type="submit" className="btn btn-primary mb-3">

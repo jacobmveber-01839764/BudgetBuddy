@@ -50,7 +50,7 @@ export default function Welcome() {
                     </div>
                 </Col>
             </Row>
-            <Button className="mx-auto" variant="outline-success" href="/signup">Create an account for free</Button>
+            <Button className="mx-auto mb-5" variant="outline-success" href="/signup">Create an account for free</Button>
         </Container>
     </div>
   );
